@@ -1,0 +1,106 @@
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+    background: none;
+    border: none;
+    padding: 0;
+    font-family: "Noto Sans Javanese", sans-serif;
+}
+.menuSize {
+    width: 30px;
+    color: white;
+
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #106eb6;
+}
+
+.logo {
+    margin-left: 1vw;
+}
+
+.logoImg {
+    width: 60%;
+}
+
+.menuHolder {
+    display: flex;
+
+    gap: 10%;
+    margin-right: 20vw;
+}
+
+.menuButton {
+    display: flex;
+    flex-direction: row;
+    height: 3vh;
+    width: 10vw;
+    align-items: center;
+    justify-content: center;
+    background-color: rgb(0, 255, 255);
+    font-size: 18px;
+}
+.pagina1{
+    display: flex;
+    flex-direction: column;
+    gap:20vh ;
+}
+.name {
+    display: flex;
+    flex-direction: row;
+}
+
+.JRed {
+    color: #C83239;
+}
+
+.TituloMain {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 35px;
+}
+
+.caixaDeItens {
+    display: flex;
+    flex-direction: column;
+    background-color: #106eb6;
+    width: 610px;
+    justify-content: center;
+    border-radius: 15px;
+    gap: 10px;
+    box-shadow: -3px 6px 14px 5px rgba(0, 0, 0, 0.21);
+}
+
+.listMain {
+    display: flex;
+    width: 70%;
+    color: white;
+    font-size: 30px;
+    justify-content: center;
+    align-items: center;
+    
+}
+
+.item1 {
+    margin-left: 5%;
+}
+
+.item2 {
+    margin-left: 10%;
+}
+
+.item3 {
+    margin-left: 20%;
+} 
+.mainHolder{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
