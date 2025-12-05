@@ -11,12 +11,12 @@ import java.io.IOException;
 import java.util.Objects;
 
 
-public class JParkingScreen extends Application {
+public class JParkingEntrada extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
 
-        stage.setWidth(660);
+        stage.setWidth(660);git
         stage.setHeight(700);
         stage.setResizable(false);
         stage.setTitle("J-Parking");

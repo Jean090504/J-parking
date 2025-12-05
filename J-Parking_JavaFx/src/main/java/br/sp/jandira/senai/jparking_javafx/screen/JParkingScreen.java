@@ -1,6 +1,7 @@
 package br.sp.jandira.senai.jparking_javafx.screen;
 
 import javafx.application.Application;
+import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.Scene;
 import javafx.scene.layout.VBox;
@@ -37,6 +38,9 @@ public class JParkingScreen extends Application {
 
         VBox header = new VBox();
         header.setStyle("-fx-padding: 10; -fx-background-color:F8F8F8 ");
+
+        Label title = new Label("J-Parking");
+        title.setStyle("-fx-text-fill: black; -fx-font-size: 24px; ");
 
 
 
