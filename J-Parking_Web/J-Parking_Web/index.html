@@ -4,10 +4,13 @@
 <head>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Javanese:wght@400..700&display=swap"
-        rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Varela+Round&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Javanese:wght@400..700&display=swap"rel="stylesheet">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./reset.css">
     <link rel="stylesheet" href="./style.css">
     <title>J-Parking</title>
 </head>
@@ -15,7 +18,7 @@
 <body>
     <header>
         <div class="logo">
-            <img class="logoImg" src="img/J-parking logo 2.png" alt="">
+            <img class="logoImg" src="img/J-parkingLogo2.png" alt="">
 
         </div>
         <div class="menuHolder">
@@ -28,7 +31,7 @@
 
             <button class="Devs menuButton">
                 <span href="">
-                    Nosso time
+                        Time de Devs
                 </span>
                 <img class="menuSize" src="img/dev-team.png" alt="">
             </button>
@@ -45,15 +48,16 @@
     </header>
 
     <main>
+        <div class="container1">
         <div class="pagina1">
             <div class="TituloMain">
                 <div class="name">
-                    <H1 class="JRed">
+                    <h1 class="JRed">
                         J
-                    </H1>
-                    <H1>
+                    </h1>
+                    <h1>
                         -Parking
-                    </H1>
+                    </h1>
                 </div>
                 <h2>
                     Gerencie seu estacionamento de forma inteligente
@@ -81,6 +85,49 @@
                 </div>
             </div>
         </div>
+       </div> 
+
+        <section class="container2">
+            <img id="fundoFuncionalidades" src="./img/fundoFuncionalidades.png" alt="">
+
+            <div class="grid-cards">
+                <div class="quadro1">
+                    <img src="./img/monitoramento.png" alt="Monitoramento"> 
+                    <h2>Monitoramento visual</h2>
+                    <p>Tenha uma visão clara e imediata da ocupação do seu estacionamento através de uma tabela interativa na tela principal, sempre atualizada.</p>
+                </div>
+
+                <div class="quadro1">
+                    <img src="./img/check-mark.png" alt="Check-In">
+                    <h2>Check-In Ágil</h2>
+                    <p>Registro rápido de veículos apenas com Placa, Modelo, Cor e Proprietário. A data e hora são capturadas automaticamente pelo sistema para evitar erros.</p>
+                </div>
+
+                <div class="quadro1">
+                    <img src="./img/Vector.png" alt="Cálculo">
+                    <h2>Cálculo automático</h2>
+                    <p>Esqueça as contas manuais. O sistema calcula o valor exato baseado no tempo de permanência, aplicando regras de hora fixa, adicionais e tolerância de 5 minutos.</p>
+                </div>
+
+                <div class="quadro1">
+                    <img src="./img/Group.png" alt="Segurança">
+                    <h2>Segurança de dados</h2>
+                    <p>Seus dados estão seguros. Tudo é salvo instantaneamente em arquivos locais (CSV), garantindo continuidade do serviço e gerando um histórico completo de todas as saídas.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="container2">
+            <div class="devs">
+                <div class="quadroDevs">
+                    <h2 class="">Jean Costa</h2>
+                    <p class="infoDev">Back-end sliper sliteris ispsin litiun volumetric satorium gojou logol portifum latirus sarturios latifundiarius taneskus</p>
+                </div>
+
+        </section>
+
+
+
 
     </main>
 
