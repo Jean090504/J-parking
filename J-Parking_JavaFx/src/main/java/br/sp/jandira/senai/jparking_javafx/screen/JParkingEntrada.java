@@ -1,8 +1,11 @@
 package br.sp.jandira.senai.jparking_javafx.screen;
 
 import javafx.application.Application;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.image.Image;
 import javafx.scene.Scene;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
@@ -14,16 +17,16 @@ import java.util.Objects;
 public class JParkingEntrada extends Application {
 
     @Override
-    public void start(Stage stage) throws IOException {
+    public void start(Stage stage2) throws IOException {
 
-        stage.setWidth(660);
-        stage.setHeight(700);
-        stage.setResizable(false);
-        stage.setTitle("J-Parking");
+        stage2.setWidth(1920);
+        stage2.setHeight(1080);
+        stage2.setResizable(false);
+        stage2.setTitle("J-Parking");
 
         try {
             Image icon = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/img/J-parking.logo.png")));
-            stage.getIcons().add(icon);
+            stage2.getIcons().add(icon);
         } catch (Exception e) {
             System.out.println("Erro: Imagem do ícone não encontrada. Verifique se moveu para 'resources'.");
             e.printStackTrace();
@@ -31,14 +34,17 @@ public class JParkingEntrada extends Application {
 
         VBox root = new VBox();
         Scene scene = new Scene(root);
-        stage.setScene(scene);
+        root.setStyle("-fx-background-color: #106DB5;");
+        root.setAlignment(Pos.CENTER);
+        stage2.setScene(scene);
+        stage2.show();
 
-        stage.show();
+        //LAYOUT PRINCIPAL
+        VBox mainLayout = new VBox(30);
+        mainLayout.setAlignment(Pos.CENTER);
+        mainLayout.setPadding(new Insets(20));
 
-        VBox header = new VBox();
-        header.setStyle("-fx-padding: 10; -fx-background-color:F8F8F8 ");
-
-
+        root.getChildren().add(mainLayout);
 
 
 
