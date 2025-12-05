@@ -1,0 +1,10 @@
+module br.sp.jandira.senai.jparking_javafx {
+    requires javafx.controls;
+    requires javafx.fxml;
+    requires javafx.web;
+
+    requires eu.hansolo.tilesfx;
+
+    opens br.sp.jandira.senai.jparking_javafx to javafx.fxml;
+    exports br.sp.jandira.senai.jparking_javafx;
+}
