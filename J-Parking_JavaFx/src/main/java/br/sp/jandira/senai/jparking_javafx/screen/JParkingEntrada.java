@@ -16,7 +16,7 @@ public class JParkingEntrada extends Application {
     @Override
     public void start(Stage stage) throws IOException {
 
-        stage.setWidth(660);git
+        stage.setWidth(660);
         stage.setHeight(700);
         stage.setResizable(false);
         stage.setTitle("J-Parking");
