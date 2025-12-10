@@ -130,12 +130,16 @@ public class JParkingScreen extends Application {
 
         btnSaida.setOnAction(evento -> {
             try {
-                Stage stage3 = new Stage();
-                JParkingEntrada telaSaida = new JParkingEntrada();
-                telaSaida.start(stage3);
 
-                stage.close();
+                Stage Stage3 = new Stage();
+                JParkingSaida.NovaTela novaTela = new JParkingSaida.NovaTela();
+                novaTela.start(Stage3);
+
+                Stage stageAtual = (Stage) btnSaida.getScene().getWindow();
+                stageAtual.close();
+
             } catch (Exception e) {
+                System.err.println("Erro ao abrir a nova tela:");
                 e.printStackTrace();
             }
         });
