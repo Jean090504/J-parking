@@ -7,4 +7,5 @@ public class JparkingApp {
     public static void main(String[] args) {
         Application.launch(JParkingScreen.class, args);
     }
+
 }

@@ -17,6 +17,12 @@ import java.util.Objects;
 
 public class JParkingEntrada extends Application {
 
+    public TextField nomeProprietario;
+    public TextField placaVeiculo;
+    public TextField corVeiculo;
+    public TextField marcaVeiculo;
+    public TextField modeloVeiculo;
+
     @Override
     public void start(Stage stage2) throws IOException {
 
@@ -44,31 +50,31 @@ public class JParkingEntrada extends Application {
 
         final String corBnt = "-fx-background-color: #136E16; -fx-text-fill: white; -fx-font-size: 20px; -fx-font-weight: bold; -fx-padding: 15px 40px; -fx-background-radius: 20;";
 
-        TextField nomeProprietario = new TextField();
+        nomeProprietario = new TextField();
         nomeProprietario.setPromptText("Nome do Proprietário");
         nomeProprietario.setStyle(cor);
         nomeProprietario.setMinWidth(400);
         nomeProprietario.setMinHeight(80);
 
-        TextField placaVeiculo = new TextField();
+        placaVeiculo = new TextField();
         placaVeiculo.setPromptText("Placa do Veículo");
         placaVeiculo.setStyle(cor);
         placaVeiculo.setMinWidth(400);
         placaVeiculo.setMinHeight(80);
 
-        TextField corVeiculo = new TextField();
+        corVeiculo = new TextField();
         corVeiculo.setPromptText("Cor do Veículo");
         corVeiculo.setStyle(cor);
         corVeiculo.setMinWidth(400);
         corVeiculo.setMinHeight(80);
 
-        TextField marcaVeiculo = new TextField();
+        marcaVeiculo = new TextField();
         marcaVeiculo.setPromptText("Marca do Veículo");
         marcaVeiculo.setStyle(cor);
         marcaVeiculo.setMinWidth(400);
         marcaVeiculo.setMinHeight(80);
 
-        TextField modeloVeiculo = new TextField();
+        modeloVeiculo = new TextField();
         modeloVeiculo.setPromptText("Modelo do Veículo");
         modeloVeiculo.setStyle(cor);
         modeloVeiculo.setMinWidth(400);
