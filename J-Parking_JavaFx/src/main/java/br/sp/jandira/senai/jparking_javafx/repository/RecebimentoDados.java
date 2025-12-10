@@ -12,6 +12,12 @@ public class RecebimentoDados {
         JParkingEntrada jParkingEntrada =  new JParkingEntrada();
         Cliente cliente = new Cliente();
 
+        cliente.nomeProprietario = jParkingEntrada.nomeProprietario.getText();
+        cliente.modeloVeiculo = jParkingEntrada.modeloVeiculo.getText();
+        cliente.cor = jParkingEntrada.corVeiculo.getText();
+        cliente.marcaVeiculo = jParkingEntrada.marcaVeiculo.getText();
+        cliente.placaVeiculo = jParkingEntrada.placaVeiculo.getText();
+
 
     }
 

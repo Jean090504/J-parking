@@ -3,13 +3,13 @@ package br.sp.jandira.senai.jparking_javafx.repository;
 public class Cliente {
 
     String nomeProprietario;
-    String modeloCarro;
+    String modeloVeiculo;
     String cor;
-    String marcaCarro;
-    String placaCarro;
+    String marcaVeiculo;
+    String placaVeiculo;
 
     public void cliente(){
-        RecebimentoDados recebimentoDados =  new RecebimentoDados();
+
     }
 
 
