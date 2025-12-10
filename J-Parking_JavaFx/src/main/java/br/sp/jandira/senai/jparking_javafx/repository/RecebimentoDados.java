@@ -4,9 +4,16 @@ import br.sp.jandira.senai.jparking_javafx.screen.JParkingEntrada;
 
 
 public class RecebimentoDados {
-    JParkingEntrada jParkingEntrada =  new JParkingEntrada();
 
-    Cliente cliente = new Cliente();
+
+
+
+    public void receberDados(){
+        JParkingEntrada jParkingEntrada =  new JParkingEntrada();
+        Cliente cliente = new Cliente();
+
+        jParkingEntrada.
+    }
 
 
 

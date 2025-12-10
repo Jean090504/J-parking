@@ -8,6 +8,9 @@ public class Cliente {
     String marcaCarro;
     String placaCarro;
 
-    RecebimentoDados recebimentoDados =  new RecebimentoDados();
+    public void cliente(){
+        RecebimentoDados recebimentoDados =  new RecebimentoDados();
+    }
+
 
 }
