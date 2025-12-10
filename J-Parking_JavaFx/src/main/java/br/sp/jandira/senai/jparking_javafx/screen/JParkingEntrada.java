@@ -1,19 +1,16 @@
 package br.sp.jandira.senai.jparking_javafx.screen;
 
 import javafx.application.Application;
-import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.Scene;
-import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-import javafx.scene.control.Label;
 
-import javax.swing.*;
 import javafx.scene.control.TextField;
-import javafx.scene.control.Label;
+
 import java.io.IOException;
 import java.util.Objects;
 
@@ -43,121 +40,101 @@ public class JParkingEntrada extends Application {
         stage2.setScene(scene);
         stage2.show();
 
-       /* //LAYOUT PRINCIPAL
-        VBox mainLayout = new VBox(30);
-        mainLayout.setAlignment(Pos.CENTER);
-        mainLayout.setPadding(new Insets(20));
+        final String cor = "-fx-background-color: transparent; -fx-border-color: white; -fx-border-radius: 15; -fx-text-fill: white; -fx-prompt-text-fill: #cccccc; -fx-border-width: 2px; -fx-padding: 10px 20px; -fx-font-size: 18px";
 
-        root.getChildren().add(mainLayout);
+        final String corBnt = "-fx-background-color: #136E16; -fx-text-fill: white; -fx-font-size: 20px; -fx-font-weight: bold; -fx-padding: 15px 40px; -fx-background-radius: 20;";
 
-        // TEXTFIELDS
-        TextField NomeProprietario = new TextField();
-        NomeProprietario.setPromptText("Digite seu nome aqui");
+        TextField nomeProprietario = new TextField();
+        nomeProprietario.setPromptText("Nome do Proprietário");
+        nomeProprietario.setStyle(cor);
+        nomeProprietario.setMinWidth(400);
+        nomeProprietario.setMinHeight(80);
 
-        TextField PlacaVeiculo = new TextField();
-        TextField CorVeiculo = new TextField();
-        TextField MarcaVeiculo = new TextField();
-        TextField ModeloVeiculo = new TextField();
+        TextField placaVeiculo = new TextField();
+        placaVeiculo.setPromptText("Placa do Veículo");
+        placaVeiculo.setStyle(cor);
+        placaVeiculo.setMinWidth(400);
+        placaVeiculo.setMinHeight(80);
 
+        TextField corVeiculo = new TextField();
+        corVeiculo.setPromptText("Cor do Veículo");
+        corVeiculo.setStyle(cor);
+        corVeiculo.setMinWidth(400);
+        corVeiculo.setMinHeight(80);
 
+        TextField marcaVeiculo = new TextField();
+        marcaVeiculo.setPromptText("Marca do Veículo");
+        marcaVeiculo.setStyle(cor);
+        marcaVeiculo.setMinWidth(400);
+        marcaVeiculo.setMinHeight(80);
 
-        // GRID E FORMATAÇÃO
-        GridPane gridFormulario = new GridPane();
-        gridFormulario.setHgap(10);
-        gridFormulario.setVgap(10);
-        gridFormulario.setAlignment(Pos.CENTER);
+        TextField modeloVeiculo = new TextField();
+        modeloVeiculo.setPromptText("Modelo do Veículo");
+        modeloVeiculo.setStyle(cor);
+        modeloVeiculo.setMinWidth(400);
+        modeloVeiculo.setMinHeight(80);
 
-
-
-
-        // ADICIONAR CAMPOS AO GRID
-        gridFormulario.add(NomeProprietario, 1, 0);
-        gridFormulario.add(PlacaVeiculo, 2,0 );
-        gridFormulario.add(CorVeiculo, 1, 1);
-        gridFormulario.add(MarcaVeiculo, 1, 2);
-        gridFormulario.add(ModeloVeiculo, 2, 2);
-
-        // ADICIONAR GRID AO MAINLAYOUT
-        mainLayout.getChildren().add(gridFormulario);*/
-
-
-
-        // Estilo para o TextField
-        final String cor = "-fx-background-color: transparent; -fx-border-color: white; -fx-border-radius: 15; -fx-text-fill: white; -fx-prompt-text-fill: #cccccc; -fx-border-width: 2px; -fx-padding: 10px 20px;";
-
-        // Estilo para o Botão
-        final String corBnt = "-fx-background-color: #38761D; -fx-text-fill: white; -fx-font-size: 18px; -fx-font-weight: bold; -fx-padding: 15px 40px; -fx-background-radius: 10;";
-
-        // TEXTFIELDS
-        // Aplicando o estilo TF_STYLE
-        TextField NomeProprietario = new TextField();
-        NomeProprietario.setPromptText("Nome do Proprietário");
-        NomeProprietario.setStyle(cor);
-        NomeProprietario.setMaxWidth(500);
-
-        TextField PlacaVeiculo = new TextField();
-        PlacaVeiculo.setPromptText("Placa do Veículo");
-        PlacaVeiculo.setStyle(cor);
-        PlacaVeiculo.setMaxWidth(500);
-
-        TextField CorVeiculo = new TextField();
-        CorVeiculo.setPromptText("Cor do Veículo");
-        CorVeiculo.setStyle(cor);
-        CorVeiculo.setMaxWidth(500);
-
-        TextField MarcaVeiculo = new TextField();
-        MarcaVeiculo.setPromptText("Marca do Veículo");
-        MarcaVeiculo.setStyle(cor);
-        MarcaVeiculo.setMaxWidth(500);
-
-        TextField ModeloVeiculo = new TextField();
-        ModeloVeiculo.setPromptText("Modelo do Veículo");
-        ModeloVeiculo.setStyle(cor);
-        ModeloVeiculo.setMaxWidth(500);
-
-        // Para replicar o layout, você precisará de um botão no final
-        javafx.scene.control.Button btnEnviar = new javafx.scene.control.Button("ENVIAR");
+        Button btnEnviar = new Button("ENVIAR");
         btnEnviar.setStyle(corBnt);
-        btnEnviar.setMinHeight(100);
+        btnEnviar.setMinWidth(600);
+        btnEnviar.setMinHeight(80);
+
+        btnEnviar.setOnAction(evento -> {
+            try {
+                Stage stageInicial = new Stage();
+                JParkingScreen telaInicial = new JParkingScreen();
+                telaInicial.start(stageInicial);
+
+                stage2.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        });
+
+        Button btnVoltar = new Button("Voltar");
+        btnVoltar.setStyle("-fx-text-alignment: left; -fx-background-color: #cccccc;");
+        btnVoltar.setMinWidth(20);
+        btnVoltar.setMinHeight(20);
+
+        btnVoltar.setOnAction(evento -> {
+            try {
+                Stage stageInicial = new Stage();
+                JParkingScreen telaInicial = new JParkingScreen();
+                telaInicial.start(stageInicial);
+
+                stage2.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        });
 
 
-        // ORGANIZAÇÃO DO LAYOUT EM LINHAS (HBox)
-
-        // Linha 1: Nome e Placa (lado a lado)
-        HBox linha1 = new HBox(30); // 30 é o espaçamento
+        HBox linha1 = new HBox(30);
         linha1.setAlignment(Pos.CENTER);
-        linha1.getChildren().addAll(NomeProprietario, PlacaVeiculo);
+        linha1.getChildren().addAll(nomeProprietario, placaVeiculo);
 
-        // Linha 2: Cor (centralizado)
+
         HBox linha2 = new HBox(30);
         linha2.setAlignment(Pos.CENTER);
-        linha2.getChildren().add(CorVeiculo);
+        linha2.getChildren().add(corVeiculo);
 
-        // Linha 3: Marca e Modelo (lado a lado)
+
         HBox linha3_MarcaModelo = new HBox(30);
         linha3_MarcaModelo.setAlignment(Pos.CENTER);
-        linha3_MarcaModelo.getChildren().addAll(MarcaVeiculo, ModeloVeiculo);
+        linha3_MarcaModelo.getChildren().addAll(marcaVeiculo, modeloVeiculo);
 
-        // Linha 4: Cor (repetição de layout)
+
         HBox linha4 = new HBox(30);
         linha4.setAlignment(Pos.CENTER);
 
-
-        // LAYOUT PRINCIPAL (VBox)
-
-        VBox layoutOrganizado = new VBox(40); // 25 é o espaçamento vertical entre as linhas
+        VBox layoutOrganizado = new VBox(40);
         layoutOrganizado.setAlignment(Pos.CENTER);
-        layoutOrganizado.getChildren().addAll(linha1, linha2, linha3_MarcaModelo, linha4,  btnEnviar);
+        layoutOrganizado.getChildren().addAll(btnVoltar, linha1, linha2, linha3_MarcaModelo, linha4,  btnEnviar);
 
-        //ATUALIZAÇÃO DO ROOT
-
-        // Remova quaisquer linhas que tentem adicionar GridPane ou outro layout ao root.
-        // Adicione apenas o VBox recém-criado.
-        root.getChildren().clear(); // Limpa o root para garantir que não haja elementos duplicados
+        root.getChildren().clear();
         root.getChildren().add(layoutOrganizado);
 
         stage2.show();
-
 
 
     }
