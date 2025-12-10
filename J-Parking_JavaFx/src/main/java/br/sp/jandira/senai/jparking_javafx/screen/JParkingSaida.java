@@ -6,10 +6,12 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
 import java.util.Objects;
 import java.util.Optional;
@@ -27,8 +29,8 @@ public class JParkingSaida {
         @Override
         public void start(Stage stage) {
 
-            stage.setWidth(800);
-            stage.setHeight(600);
+            stage.setWidth(1920);
+            stage.setHeight(1080);
             stage.setResizable(true);
             stage.setTitle("J-Parking");
 
@@ -44,6 +46,24 @@ public class JParkingSaida {
             }
 
 
+            Button btnVoltarMain = new Button("Voltar");
+            btnVoltarMain.setStyle("-fx-text-fill: white; -fx-font-size: 18px; -fx-background-radius: 5px;");
+            btnVoltarMain.setFont(Font.font("Arial", FontWeight.BOLD, 20));
+            btnVoltarMain.setPrefSize(300, 80);
+
+
+                btnVoltarMain.setOnAction(evento -> {
+                    try {
+                        Stage stageInicial = new Stage();
+                        JParkingScreen telaInicial = new JParkingScreen();
+                        telaInicial.start(stageInicial);
+
+                        stage.close();
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                });
+
 
             Label titulo = new Label("Bem-vindo à Nova Tela!");
             titulo.setFont(Font.font("Arial", 24));
@@ -58,7 +78,6 @@ public class JParkingSaida {
             HBox horasTotais = new HBox(30);
             horasTotais.setAlignment(Pos.CENTER);
             horasTotais.getChildren().addAll(tempoPermanencia);
-            //horasTotais.setFont(Font.font("Arial", 18));
             horasTotais.setPrefSize(300, 60); // Altura ajustada
             horasTotais.setStyle(
                     "-fx-background-color: rgba(255,255,255,0.89); " +
@@ -67,19 +86,10 @@ public class JParkingSaida {
                             "-fx-text-fill: #106DB5;"
             );
 
-/*
-            Button btnOpcao1 = new Button("Opção 1");
-            btnOpcao1.setPrefSize(300, 60);
 
 
-            Button btnOpcao2 = new Button("Opção 2");
-            btnOpcao2.setPrefSize(300, 60);
-            */
 
-
-            Button btnFechar = new Button("Fechar Tela");
-            btnFechar.setPrefSize(300, 60);
-/*
+         /*
             btnOpcao1.setOnAction(e -> {
                 titulo.setText("Botão 1 Clicado!");
             });
@@ -93,6 +103,8 @@ public class JParkingSaida {
             });
             */
 
+            Button btnFechar = new Button("Fechar Tela");
+            btnFechar.setPrefSize(300, 60);
 
             btnFechar.setOnAction(e -> {
                 Alert alertaFechar = new Alert(
@@ -116,10 +128,10 @@ public class JParkingSaida {
 
             rootPrincipal.getChildren().addAll(
                     titulo,
-                    //btnHistoricoDeSaidas,
-                    // btnOpcao1,
-                    // btnOpcao2,
-                    btnFechar
+                    btnFechar,
+                    btnVoltarMain,
+                    horasTotais
+
             );
 
             Scene sceneFinal = new Scene(rootPrincipal);
