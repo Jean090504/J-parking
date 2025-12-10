@@ -1,6 +1,5 @@
 package br.sp.jandira.senai.jparking_javafx.screen;
 
-import br.sp.jandira.senai.jparking_javafx.model.Cliente;
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -25,8 +24,8 @@ public class JParkingScreen extends Application {
     @Override
     public void start(Stage stage) throws IOException {
 
-        stage.setWidth(1920);
-        stage.setHeight(1080);
+        stage.setWidth(1980);
+        stage.setHeight(1040);
         stage.setResizable(false);
         stage.setTitle("J-Parking");
 
