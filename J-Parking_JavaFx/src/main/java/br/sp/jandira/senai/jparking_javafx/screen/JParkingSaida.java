@@ -35,6 +35,11 @@ public class JParkingSaida {
             stage.setResizable(true);
             stage.setTitle("J-Parking");
 
+            VBox rootPrincipal = new VBox(20); // Espaçamento de 20px
+            rootPrincipal.setStyle("-fx-background-color: #106DB5;");
+            rootPrincipal.setAlignment(Pos.CENTER);
+            rootPrincipal.setPadding(new Insets(40)); // Margem interna
+
 
 
 
@@ -48,10 +53,11 @@ public class JParkingSaida {
 
 
             Button btnVoltarMain = new Button("Voltar");
-            btnVoltarMain.setStyle("-fx-text-fill: black; -fx-font-size: 18px; -fx-background-radius: 5px;");
+            btnVoltarMain.setStyle("-fx-text-fill: black; -fx-font-size: 12px; -fx-background-radius: 5px;");
             btnVoltarMain.setFont(Font.font("Arial", FontWeight.BOLD, 20));
-            btnVoltarMain.setPrefSize(300, 80);
-
+            btnVoltarMain.setPrefSize(50, 25);
+            btnVoltarMain.setTranslateX(40);
+            btnVoltarMain.setTranslateY(100);
 
             btnVoltarMain.setOnAction(evento -> {
                 try {
@@ -66,7 +72,7 @@ public class JParkingSaida {
             });
 
 
-            Label titulo = new Label("Bem-vindo à Nova Tela!");
+            Label titulo = new Label("Saída do Veículo");
             titulo.setFont(Font.font("Arial", 24));
             titulo.setStyle("-fx-text-fill: #ffffff;"); // Para ser visível no fundo azul
 
@@ -91,10 +97,13 @@ public class JParkingSaida {
 
 
             Label totalPagar = new Label();
-            totalPagar.setText("Total a Pagar: ");
+            totalPagar.setText("Total a Pagar: R$25,00");
+            totalPagar.setWrapText(true);
+            totalPagar.setPrefWidth(300);
             totalPagar.setStyle(boxStyle);
             totalPagar.setMinWidth(150);
             totalPagar.setMinHeight(150);
+
 
             HBox totalFrame = new HBox(30);
             totalFrame.setAlignment(Pos.CENTER);
@@ -123,18 +132,20 @@ public class JParkingSaida {
 
             });
 
+            Button btnSaida = new Button("Saída");
+            btnSaida.setStyle("-fx-background-color: #A52424;-fx-font-weight:40; fx-text-fill: white; -fx-font-size: 18px; -fx-background-radius: 20px;");
+            btnSaida.setFont(Font.font("Arial", FontWeight.EXTRA_BOLD, 40));
+            btnSaida.setPrefSize(300, 80);
 
-            VBox rootPrincipal = new VBox(20); // Espaçamento de 20px
-            rootPrincipal.setStyle("-fx-background-color: #106DB5;");
-            rootPrincipal.setAlignment(Pos.CENTER);
-            rootPrincipal.setPadding(new Insets(40)); // Margem interna
+
 
 
             rootPrincipal.getChildren().addAll(
+                    btnVoltarMain,
                     titulo,
                     horasTotais,
                     totalFrame,
-                    btnVoltarMain
+                    btnSaida
 
 
             );
