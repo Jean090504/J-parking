@@ -14,22 +14,36 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 import java.util.Objects;
 import java.util.Optional;
 
 public class JParkingSaida {
 
+
+
     static Cliente cliente = new Cliente();
     public static class NovaTela extends Application {
 
+        public int totalDeHoras ;
 
-        final String boxStyle = "-fx-background-color: transparent; -fx-border-color: white; -fx-border-radius: 25; -fx-text-fill: white; -fx-prompt-text-fill: white; -fx-border-width: 2px; -fx-padding: 10px 20px; -fx-font-size: 30;";
+        final String boxStyle = "-fx-background-color: transparent;" +
+                " -fx-border-color: white;" +
+                " -fx-border-radius: 25;" +
+                " -fx-text-fill: white;" +
+                " -fx-prompt-text-fill: white; " +
+                "-fx-border-width: 2px;" +
+                " -fx-padding: 10px 20px;" +
+                " -fx-font-size: 30;";
 
 
 
         @Override
         public void start(Stage stage) {
+
+
 
             stage.setWidth(1920);
             stage.setHeight(1080);
@@ -40,7 +54,6 @@ public class JParkingSaida {
             rootPrincipal.setStyle("-fx-background-color: #106DB5;");
             rootPrincipal.setAlignment(Pos.CENTER);
             rootPrincipal.setPadding(new Insets(40)); // Margem interna
-
 
 
 
@@ -79,31 +92,49 @@ public class JParkingSaida {
             titulo.setFont(Font.font("Arial", 50));
             titulo.setStyle("-fx-text-fill: #ffffff;"); // Para ser visível no fundo azul
 
-            Label nomeCliente = new Label();
-            nomeCliente.setText(cliente.nomeProprietario);
+            Label infoCliente = new Label();
+            infoCliente.setText("Cliente: " + cliente.nomeProprietario);
+            infoCliente.setStyle(" -fx-text-fill: white; -fx-font-size: 30;");
+            infoCliente.setMinWidth(300);
+            infoCliente.setMinHeight(200);
 
             Label placa = new Label();
-            placa.setText(cliente.placaVeiculo);
+            placa.setText("Placa: " + cliente.placaVeiculo);
+            placa.setStyle(
+                    "-fx-text-fill: white;" +
+                    " -fx-font-size: 30;"
+            );
+            placa.setMinWidth(300);
+            placa.setMinHeight(60);
 
-            HBox clienteBox = new HBox(30);
+
+            VBox clienteBox = new VBox(10);
             clienteBox.setAlignment(Pos.CENTER);
+            clienteBox.setStyle("-fx-background-color: transparent;" +
+                    " -fx-border-color: white;" +
+                    " -fx-border-radius: 25;" +
+                    " -fx-text-fill: white;" +
+                    " -fx-prompt-text-fill: white; " +
+                    "-fx-border-width: 2px;" +
+                    " -fx-padding: 5px 5px;" +
+                    " -fx-font-size: 30;");
+            clienteBox.setMaxWidth(300);
+            clienteBox.setMaxHeight(150);
+            clienteBox.setMinHeight(150);
             clienteBox.getChildren().addAll(
-                    nomeCliente,
+                    infoCliente,
                     placa
             );
-            clienteBox.setStyle(
-                    "-fx-background-color: #106DB5FF; " +
-                            "-fx-background-radius: 50px; " +
-                            "-fx-padding: 5 15 5 15; " +
-                            "-fx-text-fill: #106DB5;"
-            );
+
+
+
 
 
 
             Label tempoPermanencia = new Label();
-            tempoPermanencia.setText("Tempo de permanencia: ");
+            tempoPermanencia.setText("Tempo de permanencia:     " + totalDeHoras + "Hrs");
             tempoPermanencia.setStyle(boxStyle);
-            tempoPermanencia.setMinWidth(600);
+            tempoPermanencia.setMinWidth(450);
             tempoPermanencia.setMinHeight(60);
 
             HBox horasTotais = new HBox(30);
@@ -118,7 +149,7 @@ public class JParkingSaida {
 
 
             Label totalPagar = new Label();
-            totalPagar.setText("Total a Pagar: R$25,00");
+            totalPagar.setText("Total a Pagar: " );
             totalPagar.setWrapText(true);
             totalPagar.setPrefWidth(300);
             totalPagar.setStyle(boxStyle);
@@ -153,7 +184,8 @@ public class JParkingSaida {
 
             });
 
-            Button btnSaida = new Button("Saída");
+            Button btnSaida = new Button();
+            btnSaida.setText("Saída");
             btnSaida.setStyle("-fx-background-color: #A52424; -fx-text-fill: white; -fx-font-size: 18px; -fx-background-radius: 20px;");
             btnSaida.setFont(Font.font("Arial", FontWeight.BOLD, 20));
             btnSaida.setPrefSize(300, 80);
