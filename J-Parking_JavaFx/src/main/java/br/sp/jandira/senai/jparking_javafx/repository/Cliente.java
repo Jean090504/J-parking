@@ -16,14 +16,17 @@ public class Cliente {
     public String cor;
     public String marcaVeiculo;
     public String placaVeiculo;
+    public LocalDateTime horaAtual;
+    public DateTimeFormatter formatador;
+    public String horaEntrada;
 
 
     public void gravarCliente() {
         UUID id = UUID.randomUUID();
 
-        LocalDateTime horaAtual = LocalDateTime.now();
-        DateTimeFormatter formatador = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
-        String horaEntrada = horaAtual.format(formatador);
+        horaAtual = LocalDateTime.now();
+        formatador = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+        horaEntrada = horaAtual.format(formatador);
 
         Path arquivo = Path.of("C:\\Users\\25203640\\Desktop\\J-parking\\J-Parking_JavaFx\\src\\main\\resources\\arquivos\\veiculosEstacionados.csv");
         try {
