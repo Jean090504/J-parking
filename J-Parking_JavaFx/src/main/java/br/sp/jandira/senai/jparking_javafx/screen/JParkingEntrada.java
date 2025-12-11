@@ -41,7 +41,7 @@ public class JParkingEntrada extends Application {
 
         stage2.setWidth(1920);
         stage2.setHeight(1080);
-        stage2.setResizable(false);
+        stage2.setResizable(true);
         stage2.setTitle("J-Parking");
 
         try {

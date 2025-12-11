@@ -9,6 +9,8 @@ import java.nio.file.Path;
 import java.nio.file.StandardOpenOption;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 
@@ -32,6 +34,21 @@ public class RecebimentoDados {
             System.out.println("Erro ao abrir o arquivo!!!");
             System.out.println(e.getMessage());
         }
+
+    }
+
+    public List<String> lerVeiculosEstacionados() {
+        Cliente cliente = new Cliente();
+
+        Path arquivo = Path.of("C:\\Users\\25203640\\Desktop\\J-parking\\J-Parking_JavaFx\\src\\main\\resources\\arquivos\\veiculosEstacionados.csv");
+
+        try {
+            Files.writeString(arquivo, cliente.id + ";" + cliente.nomeProprietario + ";" + cliente.modeloVeiculo + ";" + cliente.cor + ";" + cliente.marcaVeiculo + ";" + cliente.placaVeiculo+ ";" + horaEntrada + "\n", StandardOpenOption.APPEND);
+            System.out.println("Nova entrada!!!");
+        } catch (IOException e) {
+            System.err.println("Erro ao ler o arquivo de veículos estacionados: " + e.getMessage());
+            return new ArrayList<>();
+        }
     }
 
 
@@ -48,6 +65,7 @@ public class RecebimentoDados {
         cliente.placaVeiculo = placaVeiculo.getText();
 
         gravarCliente(cliente);
+
 
     }
 }

@@ -1,5 +1,7 @@
 package br.sp.jandira.senai.jparking_javafx.screen;
 
+import br.sp.jandira.senai.jparking_javafx.repository.Cliente;
+import br.sp.jandira.senai.jparking_javafx.repository.RecebimentoDados;
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -18,6 +20,7 @@ import br.sp.jandira.senai.jparking_javafx.util.DashBoardFactory;
 import eu.hansolo.tilesfx.Tile;
 
 import java.io.IOException;
+import java.util.List;
 import java.util.Objects;
 
 public class JParkingScreen extends Application {
@@ -27,7 +30,7 @@ public class JParkingScreen extends Application {
 
         stage.setWidth(1980);
         stage.setHeight(1040);
-        stage.setResizable(false);
+        stage.setResizable(true);
         stage.setTitle("J-Parking");
 
         // Logo
@@ -76,10 +79,9 @@ public class JParkingScreen extends Application {
         ListView listaEstacionados = new ListView();
         listaEstacionados.setMinHeight(800);
 
-
-
-
-
+        RecebimentoDados repositorio = new RecebimentoDados();
+        List<String> veiculos = repositorio.lerVeiculosEstacionados();
+        listaEstacionados.getItems().addAll(veiculos);
 
         cardEsquerda.getChildren().addAll(headerTop, headerTitle, linha, listaEstacionados);
 
