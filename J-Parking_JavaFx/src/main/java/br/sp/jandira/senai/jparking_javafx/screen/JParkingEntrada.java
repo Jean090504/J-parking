@@ -1,6 +1,8 @@
 package br.sp.jandira.senai.jparking_javafx.screen;
 
+import br.sp.jandira.senai.jparking_javafx.model.Jparking;
 import br.sp.jandira.senai.jparking_javafx.repository.Cliente;
+import br.sp.jandira.senai.jparking_javafx.repository.RecebimentoDados;
 import javafx.application.Application;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
@@ -17,11 +19,15 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.StandardOpenOption;
 import java.util.Objects;
+import java.util.UUID;
 
 
 public class JParkingEntrada extends Application {
 
     Cliente cliente = new Cliente();
+    Jparking jparkingExecutavel = new Jparking();
+    RecebimentoDados receberDados = new RecebimentoDados();
+
     public TextField nomeProprietario;
     public TextField placaVeiculo;
     public TextField corVeiculo;
@@ -92,9 +98,17 @@ public class JParkingEntrada extends Application {
         btnEnviar.setMinWidth(600);
         btnEnviar.setMinHeight(80);
 
+
         btnEnviar.setOnAction(evento -> {
 
-            cliente.gravarCliente();
+            cliente.id = String.valueOf(UUID.randomUUID());
+            cliente.nomeProprietario = nomeProprietario.getText();
+            cliente.modeloVeiculo = modeloVeiculo.getText();
+            cliente.cor = corVeiculo.getText();
+            cliente.marcaVeiculo = marcaVeiculo.getText();
+            cliente.placaVeiculo = placaVeiculo.getText();
+
+            receberDados.gravarCliente(cliente);
 
             try {
                 Stage stageInicial = new Stage();
@@ -106,6 +120,8 @@ public class JParkingEntrada extends Application {
                 e.printStackTrace();
             }
             System.out.println("Entrada de Veículo!");
+            jparkingExecutavel.exibirDados(cliente);
+
         });
 
         btnVoltar = new Button("Voltar");

@@ -6,9 +6,8 @@ import br.sp.jandira.senai.jparking_javafx.repository.RecebimentoDados;
 public class Jparking {
 
     RecebimentoDados recebimentoDados = new RecebimentoDados();
-    Cliente cliente = new Cliente();
 
-    public void exibirDados(){
+    public void exibirDados(Cliente cliente){
         System.out.println("ID: " + cliente.id);
         System.out.println("Nome: " + cliente.nomeProprietario);
         System.out.println("Modelo: " + cliente.modeloVeiculo);

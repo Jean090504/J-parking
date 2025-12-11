@@ -78,6 +78,9 @@ public class JParkingScreen extends Application {
 
 
 
+
+
+
         cardEsquerda.getChildren().addAll(headerTop, headerTitle, linha, listaEstacionados);
 
 
