@@ -6,6 +6,7 @@ import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
 import javafx.scene.control.Separator;
 import javafx.scene.image.Image;
 import javafx.scene.layout.*;
@@ -71,7 +72,11 @@ public class JParkingScreen extends Application {
         Separator linha = new Separator();
         linha.setStyle("-fx-background-color: white; -fx-pref-height: 1px;");
 
-        GridPane listaEstacionados = new GridPane();
+
+        ListView listaEstacionados = new ListView();
+        listaEstacionados.setMinHeight(800);
+
+
 
         cardEsquerda.getChildren().addAll(headerTop, headerTitle, linha, listaEstacionados);
 

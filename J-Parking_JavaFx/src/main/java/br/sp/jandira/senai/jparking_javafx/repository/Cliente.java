@@ -2,11 +2,11 @@ package br.sp.jandira.senai.jparking_javafx.repository;
 
 public class Cliente {
 
-    String nomeProprietario;
-    String modeloVeiculo;
-    String cor;
-    String marcaVeiculo;
-    String placaVeiculo;
+    public String nomeProprietario;
+    public String modeloVeiculo;
+    public String cor;
+    public String marcaVeiculo;
+    public String placaVeiculo;
 
     public void cliente(){
 
