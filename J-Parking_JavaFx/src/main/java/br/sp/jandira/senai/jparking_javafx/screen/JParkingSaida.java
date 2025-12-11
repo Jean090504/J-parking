@@ -1,5 +1,6 @@
 package br.sp.jandira.senai.jparking_javafx.screen;
 
+import br.sp.jandira.senai.jparking_javafx.repository.Cliente;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.geometry.Insets;
@@ -19,7 +20,7 @@ import java.util.Optional;
 
 public class JParkingSaida {
 
-
+    static Cliente cliente = new Cliente();
     public static class NovaTela extends Application {
 
 
@@ -52,12 +53,13 @@ public class JParkingSaida {
             }
 
 
+
             Button btnVoltarMain = new Button("Voltar");
-            btnVoltarMain.setStyle("-fx-text-fill: black; -fx-font-size: 12px; -fx-background-radius: 5px;");
+            btnVoltarMain.setStyle("-fx-background-color: #A52424; -fx-text-fill: white; -fx-font-size: 18px; -fx-background-radius: 20px;");
             btnVoltarMain.setFont(Font.font("Arial", FontWeight.BOLD, 20));
-            btnVoltarMain.setPrefSize(50, 25);
-            btnVoltarMain.setTranslateX(40);
-            btnVoltarMain.setTranslateY(100);
+            btnVoltarMain.setPrefSize(100, 50);
+            btnVoltarMain.setTranslateX(-750);
+            btnVoltarMain.setTranslateY(-100);
 
             btnVoltarMain.setOnAction(evento -> {
                 try {
@@ -72,9 +74,30 @@ public class JParkingSaida {
             });
 
 
+
             Label titulo = new Label("Saída do Veículo");
-            titulo.setFont(Font.font("Arial", 24));
+            titulo.setFont(Font.font("Arial", 50));
             titulo.setStyle("-fx-text-fill: #ffffff;"); // Para ser visível no fundo azul
+
+            Label nomeCliente = new Label();
+            nomeCliente.setText(cliente.nomeProprietario);
+
+            Label placa = new Label();
+            placa.setText(cliente.placaVeiculo);
+
+            HBox clienteBox = new HBox(30);
+            clienteBox.setAlignment(Pos.CENTER);
+            clienteBox.getChildren().addAll(
+                    nomeCliente,
+                    placa
+            );
+            clienteBox.setStyle(
+                    "-fx-background-color: #106DB5FF; " +
+                            "-fx-background-radius: 50px; " +
+                            "-fx-padding: 5 15 5 15; " +
+                            "-fx-text-fill: #106DB5;"
+            );
+
 
 
             Label tempoPermanencia = new Label();
@@ -91,8 +114,6 @@ public class JParkingSaida {
                             "-fx-background-radius: 50px; " +
                             "-fx-padding: 5 15 5 15; " +
                             "-fx-text-fill: #106DB5;"
-
-
             );
 
 
@@ -133,16 +154,15 @@ public class JParkingSaida {
             });
 
             Button btnSaida = new Button("Saída");
-            btnSaida.setStyle("-fx-background-color: #A52424;-fx-font-weight:40; fx-text-fill: white; -fx-font-size: 18px; -fx-background-radius: 20px;");
-            btnSaida.setFont(Font.font("Arial", FontWeight.EXTRA_BOLD, 40));
+            btnSaida.setStyle("-fx-background-color: #A52424; -fx-text-fill: white; -fx-font-size: 18px; -fx-background-radius: 20px;");
+            btnSaida.setFont(Font.font("Arial", FontWeight.BOLD, 20));
             btnSaida.setPrefSize(300, 80);
-
-
 
 
             rootPrincipal.getChildren().addAll(
                     btnVoltarMain,
                     titulo,
+                    clienteBox,
                     horasTotais,
                     totalFrame,
                     btnSaida
