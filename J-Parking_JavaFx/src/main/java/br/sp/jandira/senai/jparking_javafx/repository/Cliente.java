@@ -21,11 +21,14 @@ public class Cliente {
     public void gravarCliente() {
         UUID id = UUID.randomUUID();
 
+        LocalDateTime horaAtual = LocalDateTime.now();
+        DateTimeFormatter formatador = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+        String horaEntrada = horaAtual.format(formatador);
 
         Path arquivo = Path.of("C:\\Users\\25203640\\Desktop\\J-parking\\J-Parking_JavaFx\\src\\main\\resources\\arquivos\\veiculosEstacionados.csv");
         try {
             Files.writeString(arquivo,   id +
-                    nomeProprietario + ";" + modeloVeiculo + ";" + cor + ";" + marcaVeiculo + ";" + placaVeiculo+ ";" + , StandardOpenOption.APPEND);
+                    nomeProprietario + ";" + modeloVeiculo + ";" + cor + ";" + marcaVeiculo + ";" + placaVeiculo+ ";" + horaEntrada, StandardOpenOption.APPEND);
             System.out.println("Nova entrada!!!");
         } catch (IOException e) {
             System.out.println("Erro ao abrir o arquivo!!!");
