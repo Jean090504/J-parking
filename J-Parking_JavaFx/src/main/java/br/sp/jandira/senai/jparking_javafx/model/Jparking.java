@@ -8,12 +8,13 @@ public class Jparking {
     RecebimentoDados recebimentoDados = new RecebimentoDados();
     Cliente cliente = new Cliente();
 
-    public void mostrarDados(){
-        System.out.println(cliente.nomeProprietario);
-        System.out.println(cliente.modeloVeiculo);
-        System.out.println(cliente.cor);
-        System.out.println(cliente.marcaVeiculo);
-        System.out.println(cliente.placaVeiculo);
+    public void exibirDados(){
+        System.out.println("ID: " + cliente.id);
+        System.out.println("Nome: " + cliente.nomeProprietario);
+        System.out.println("Modelo: " + cliente.modeloVeiculo);
+        System.out.println("Cor do Veículo: " + cliente.cor);
+        System.out.println("Marca do Veículo: " + cliente.marcaVeiculo);
+        System.out.println("Placa do Veículo: " + cliente.placaVeiculo);
 
 
     }

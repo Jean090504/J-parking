@@ -12,8 +12,8 @@ public class JparkingApp {
     }
     Jparking jparkingExecutavel = new Jparking();
 
-    public void teste(){
-        jparkingExecutavel.mostrarDados();
+    public void executarLogica(){
+        jparkingExecutavel.exibirDados();
 
 
 

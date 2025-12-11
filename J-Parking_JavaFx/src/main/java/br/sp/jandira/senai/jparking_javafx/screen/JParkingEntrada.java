@@ -1,5 +1,6 @@
 package br.sp.jandira.senai.jparking_javafx.screen;
 
+import br.sp.jandira.senai.jparking_javafx.repository.Cliente;
 import javafx.application.Application;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
@@ -12,16 +13,22 @@ import javafx.stage.Stage;
 import javafx.scene.control.TextField;
 
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.StandardOpenOption;
 import java.util.Objects;
 
 
 public class JParkingEntrada extends Application {
 
+    Cliente cliente = new Cliente();
     public TextField nomeProprietario;
     public TextField placaVeiculo;
     public TextField corVeiculo;
     public TextField marcaVeiculo;
     public TextField modeloVeiculo;
+    public Button    btnVoltar;
+    public Button    btnEnviar;
 
     @Override
     public void start(Stage stage2) throws IOException {
@@ -80,12 +87,15 @@ public class JParkingEntrada extends Application {
         modeloVeiculo.setMinWidth(400);
         modeloVeiculo.setMinHeight(80);
 
-        Button btnEnviar = new Button("ENVIAR");
+        btnEnviar = new Button("ENVIAR");
         btnEnviar.setStyle(corBnt);
         btnEnviar.setMinWidth(600);
         btnEnviar.setMinHeight(80);
 
         btnEnviar.setOnAction(evento -> {
+
+            cliente.gravarCliente();
+
             try {
                 Stage stageInicial = new Stage();
                 JParkingScreen telaInicial = new JParkingScreen();
@@ -95,9 +105,10 @@ public class JParkingEntrada extends Application {
             } catch (Exception e) {
                 e.printStackTrace();
             }
+            System.out.println("Entrada de Veículo!");
         });
 
-        Button btnVoltar = new Button("Voltar");
+        btnVoltar = new Button("Voltar");
         btnVoltar.setStyle("-fx-text-alignment: left; -fx-background-color: #cccccc;");
         btnVoltar.setMinWidth(20);
         btnVoltar.setMinHeight(20);
