@@ -7,8 +7,11 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.StandardOpenOption;
+import java.time.Duration;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
@@ -38,7 +41,7 @@ public class RecebimentoDados {
 
     }
 
-    public List<String> lerVeiculosEstacionados() {
+    public List<RepositoryVeiculo> lerVeiculosEstacionados() {
 
         // Opção 1 : C:\\Users\\felix\\J-parking\\J-Parking_JavaFx\\src\\main\\resources\\arquivos\\veiculosEstacionados.csv
         // Opção 2 : C:\\Users\\25203640\\Desktop\\J-parking\\J-Parking_JavaFx\\src\\main\\resources\\arquivos\\veiculosEstacionados.csv
@@ -52,23 +55,52 @@ public class RecebimentoDados {
                         String[] campos = linha.split(";");
 
                         if (campos.length < 7) {
-                            return "Dados corrompidos ou linha incompleta.";
+                            return new RepositoryVeiculo(linha, "Dados corrompidos ou linha incompleta.");
                         }
 
-                        return String.format(
+                        String linhaFormatada = String.format(
                                 "[Placa: %s] - %s (%s/%s/%s) | Entrada: %s",
-                                campos[5],  // Placa
-                                campos[1],  // Nome Proprietário
-                                campos[4],  // Marca Veículo
-                                campos[2],  // Modelo Veículo
-                                campos[3],  // Cor Veículo
-                                campos[6]   // Hora Entrada
+                                campos[5], campos[1], campos[4], campos[2], campos[3], campos[6]
                         );
+
+                        // Retorna a linha original e a linha formatada
+                        return new RepositoryVeiculo(linha, linhaFormatada);
+                    })
+                    .collect(Collectors.toList()).reversed();
+
+            } catch (IOException e) {
+            System.err.println("Erro ao ler o arquivo de veículos estacionados: " + e.getMessage());
+            return new ArrayList<>();
+        }
+    }
+
+    public List<RepositoryHistoricoVeiculo> lerHistoricoSaidas() {
+        Path arquivo = Path.of("C:\\Users\\felix\\J-parking\\J-Parking_JavaFx\\src\\main\\resources\\arquivos\\saidaVeiculos.csv");
+
+        try {
+            return Files.readAllLines(arquivo)
+                    .stream()
+                    .map(linha -> {
+                        String[] campos = linha.split(";");
+
+                        if (campos.length < 8) {
+                            return new RepositoryHistoricoVeiculo(linha, "Dados de histórico corrompidos.");
+                        }
+
+                        String linhaFormatada = String.format(
+                                "[PLACA: %s] | Saída: %s | Cliente: %s | Entrada: %s",
+                                campos[5],      // Placa
+                                campos[7],      // Hora Saída
+                                campos[1],      // Nome Proprietário
+                                campos[6]       // Hora Entrada
+                        );
+
+                        return new RepositoryHistoricoVeiculo(linha, linhaFormatada);
                     })
                     .collect(Collectors.toList());
 
         } catch (IOException e) {
-            System.err.println("Erro ao ler o arquivo de veículos estacionados: " + e.getMessage());
+            System.err.println("Erro ao ler o arquivo de histórico de saídas: " + e.getMessage());
             return new ArrayList<>();
         }
     }
@@ -89,19 +121,22 @@ public class RecebimentoDados {
         gravarCliente(cliente);
     }
 
-    public void gravarSaida(String registroSaida) {
+    public void gravarSaida(String linhaCsvOriginal) {
         // Opção 1 : C:\\Users\\felix\\J-parking\\J-Parking_JavaFx\\src\\main\\resources\\arquivos\\veiculosEstacionados.csv
         // Opção 2 : C:\\Users\\25203640\\Desktop\\J-parking\\J-Parking_JavaFx\\src\\main\\resources\\arquivos\\veiculosEstacionados.csv
 
-        Path arquivoSaida = Path.of("C:\\Users\\felix\\J-parking\\J-Parking_JavaFx\\src\\main\\resources\\arquivos\\saidaVeiculos.csv");
-        try {
-            Files.writeString(arquivoSaida, registroSaida + "\n", StandardOpenOption.APPEND);
-            System.out.println("Registro de Saída adicionado ao histórico.");
-        } catch (IOException e) {
-            System.out.println("Erro ao gravar no histórico de saídas.");
-            System.out.println(e.getMessage());
+            String horaSaida = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
+            String registroSaida = linhaCsvOriginal + ";" + horaSaida;
+
+            Path arquivoSaida = Path.of("C:\\Users\\felix\\J-parking\\J-Parking_JavaFx\\src\\main\\resources\\arquivos\\saidaVeiculos.csv");
+            try {
+                Files.writeString(arquivoSaida, registroSaida + "\n", StandardOpenOption.APPEND);
+                System.out.println("Registro de Saída adicionado ao histórico.");
+            } catch (IOException e) {
+                System.out.println("Erro ao gravar no histórico de saídas.");
+                System.out.println(e.getMessage());
+            }
         }
-    }
 
     public int contarVeiculosEstacionados() {
         Path arquivo = Path.of("C:\\Users\\felix\\J-parking\\J-Parking_JavaFx\\src\\main\\resources\\arquivos\\veiculosEstacionados.csv");
@@ -136,6 +171,71 @@ public class RecebimentoDados {
         } catch (IOException e) {
             System.err.println("Erro ao remover veículo do arquivo: " + e.getMessage());
         }
+    }
+
+    public double calcularFaturamentoDiario() {
+        Path arquivo = Path.of("C:\\Users\\felix\\J-parking\\J-Parking_JavaFx\\src\\main\\resources\\arquivos\\saidaVeiculos.csv");
+        double precoPrimeiraHora = 10.00;
+        double precoHoraSubsequente = 5.00;
+        int limiteDeTempoArredondado = 5;
+        double faturamentoTotal = 0.0;
+
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+        LocalDate hoje = LocalDate.now();
+
+        try {
+            List<String> todasAsLinhas = Files.readAllLines(arquivo);
+
+            for (String linha : todasAsLinhas) {
+                String[] campos = linha.split(";");
+
+                if (campos.length >= 8) {
+                    try {
+                        LocalDateTime entrada = LocalDateTime.parse(campos[6].trim(), formatter);
+                        LocalDateTime saida = LocalDateTime.parse(campos[7].trim(), formatter);
+
+
+                        if (saida.toLocalDate().isEqual(hoje)) {
+                            Duration duracao = Duration.between(entrada, saida);
+                            long minutosPermanencia = duracao.toMinutes();
+
+                            int horasCobradas = 0;
+                            double valorPago = 0.0;
+
+                            if (minutosPermanencia > 0) {
+                                horasCobradas = 1;
+                                long minutosRestantes = minutosPermanencia - 60;
+
+                                if (minutosRestantes > 0) {
+                                    long horasInteiras = minutosRestantes / 60;
+                                    long minutosFracao = minutosRestantes % 60;
+
+                                    horasCobradas += horasInteiras;
+                                    if (minutosFracao >= limiteDeTempoArredondado) {
+                                        horasCobradas += 1;
+                                    }
+                                }
+                            }
+
+                            if (horasCobradas == 1) {
+                                valorPago = precoPrimeiraHora;
+                            } else if (horasCobradas > 1) {
+                                valorPago = precoPrimeiraHora + ((horasCobradas - 1) * precoHoraSubsequente);
+                            } else {
+                                valorPago = 0.0;
+                            }
+
+                            faturamentoTotal += valorPago;
+                        }
+                    } catch (DateTimeParseException e) {
+                        System.err.println("Erro de formato de data no CSV: " + e.getMessage());
+                    }
+                }
+            }
+        } catch (IOException e) {
+            System.err.println("Erro ao ler arquivo de histórico para faturamento: " + e.getMessage());
+        }
+        return faturamentoTotal;
     }
 
 

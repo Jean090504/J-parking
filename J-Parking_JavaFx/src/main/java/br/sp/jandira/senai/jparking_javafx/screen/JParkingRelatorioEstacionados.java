@@ -1,6 +1,7 @@
 package br.sp.jandira.senai.jparking_javafx.screen;
 
 import br.sp.jandira.senai.jparking_javafx.repository.RecebimentoDados;
+import br.sp.jandira.senai.jparking_javafx.repository.RepositoryVeiculo;
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -39,12 +40,22 @@ public class JParkingRelatorioEstacionados extends Application {
         titulo.setFont(Font.font("Arial", FontWeight.BOLD, 28));
         titulo.setTextFill(Color.web("#106DB5"));
 
-        ListView<String> listaRelatorio = new ListView<>();
+        ListView<RepositoryVeiculo> listaRelatorio = new ListView<>();
         listaRelatorio.setPrefHeight(800);
 
         RecebimentoDados repositorio = new RecebimentoDados();
-        List<String> veiculos = repositorio.lerVeiculosEstacionados();
-        listaRelatorio.getItems().addAll(veiculos);
+
+        List<RepositoryVeiculo> veiculosRegistros = repositorio.lerVeiculosEstacionados();
+        listaRelatorio.getItems().addAll(veiculosRegistros);
+
+
+        listaRelatorio.setCellFactory(lv -> new javafx.scene.control.ListCell<RepositoryVeiculo>() {
+            @Override
+            protected void updateItem(RepositoryVeiculo item, boolean empty) {
+                super.updateItem(item, empty);
+                setText(empty ? null : item.getLinhaFormatada()); // Exibe a string formatada
+            }
+        });
 
         VBox root = new VBox(20);
         root.setPadding(new Insets(20));

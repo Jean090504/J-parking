@@ -1,6 +1,7 @@
 package br.sp.jandira.senai.jparking_javafx.screen;
 
 import br.sp.jandira.senai.jparking_javafx.repository.RecebimentoDados;
+import br.sp.jandira.senai.jparking_javafx.repository.RepositoryVeiculo;
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -25,6 +26,23 @@ public class JParkingScreen extends Application {
     RecebimentoDados repositorio = new RecebimentoDados();
     int VAGAS_TOTAIS = 50;
 
+    private ListView<RepositoryVeiculo> listaEstacionados;
+    private Label labelVagas;
+
+    public void processarSaidaConfirmada(RepositoryVeiculo veiculo) {
+        this.listaEstacionados.getItems().remove(veiculo);
+        atualizarContadorVagas(this.labelVagas);
+        System.out.println("Saída Confirmada! Veículo: " + veiculo.getLinhaFormatada());
+    }
+
+    private void atualizarContadorVagas(Label labelVagas) {
+        int veiculosEstacionados = repositorio.contarVeiculosEstacionados();
+        int novasVagasLivres = VAGAS_TOTAIS - veiculosEstacionados;
+        labelVagas.setText("Vagas Livres: " + novasVagasLivres + "/" + VAGAS_TOTAIS);
+    }
+
+
+
     @Override
     public void start(Stage stage) throws IOException {
 
@@ -44,7 +62,7 @@ public class JParkingScreen extends Application {
         //ROOT (Fundo Principal)
         VBox root = new VBox();
         root.setStyle("-fx-background-color: #106DB5;");
-        root.setAlignment(Pos.CENTER); // Centraliza tudo na tela
+        root.setAlignment(Pos.CENTER);
 
         //LAYOUT PRINCIPAL
         HBox mainLayout = new HBox(30);
@@ -62,7 +80,7 @@ public class JParkingScreen extends Application {
         int veiculosEstacionados = repositorio.contarVeiculosEstacionados();
         int vagasLivres = VAGAS_TOTAIS - veiculosEstacionados;
 
-        Label labelVagas = new Label("Vagas Livres: " + vagasLivres + "/" + VAGAS_TOTAIS);
+        this.labelVagas = new Label("Vagas Livres: " + vagasLivres + "/" + VAGAS_TOTAIS);
         labelVagas.setTextFill(Color.WHITE);
         labelVagas.setFont(Font.font("Arial", 24));
         labelVagas.setStyle("-fx-background-color: rgba(255,255,255,0.3); -fx-background-radius: 5px; -fx-padding: 5 15 5 15;");
@@ -78,11 +96,19 @@ public class JParkingScreen extends Application {
         Separator linha = new Separator();
         linha.setStyle("-fx-background-color: white; -fx-pref-height: 1px;");
 
-        ListView listaEstacionados = new ListView();
+        this.listaEstacionados = new ListView<>();
         listaEstacionados.setMinHeight(800);
 
-        List<String> veiculos = repositorio.lerVeiculosEstacionados();
-        listaEstacionados.getItems().addAll(veiculos);
+        List<RepositoryVeiculo> veiculosRegistros = repositorio.lerVeiculosEstacionados();
+        listaEstacionados.getItems().addAll(veiculosRegistros);
+
+        listaEstacionados.setCellFactory(lv -> new javafx.scene.control.ListCell<RepositoryVeiculo>() {
+            @Override
+            protected void updateItem(RepositoryVeiculo item, boolean empty) {
+                super.updateItem(item, empty);
+                setText(empty ? null : item.getLinhaFormatada());
+            }
+        });
 
         cardEsquerda.getChildren().addAll(headerTop, headerTitle, linha, listaEstacionados);
 
@@ -101,10 +127,13 @@ public class JParkingScreen extends Application {
         labelFaturamento.setFont(Font.font("Arial", FontWeight.BOLD, 24));
         cardFaturamento.getChildren().add(labelFaturamento);
 
-        Tile graficoOcupacao = DashBoardFactory.criarMedidorOcupacao(45); // Ex: 45% ocupado
-        Tile graficoFaturamento = DashBoardFactory.criarResumoFinanceiro();
+        double faturamentoDoDia = repositorio.calcularFaturamentoDiario();
+        int porcentagemOcupacao = (int) Math.round((double) veiculosEstacionados / VAGAS_TOTAIS * 100);
 
-        HBox painelDashboard = new HBox(20); // Espaçamento de 20px
+        Tile graficoOcupacao = DashBoardFactory.criarMedidorOcupacao(porcentagemOcupacao);
+        Tile graficoFaturamento = DashBoardFactory.criarResumoFinanceiro(faturamentoDoDia);
+
+        HBox painelDashboard = new HBox(20);
         painelDashboard.getChildren().addAll(graficoOcupacao, graficoFaturamento);
 
         //Botões + Relatórios
@@ -139,9 +168,9 @@ public class JParkingScreen extends Application {
         btnSaida.setPrefSize(300, 80);
 
         btnSaida.setOnAction(evento -> {
-            String itemSelecionado = (String) listaEstacionados.getSelectionModel().getSelectedItem();
+            RepositoryVeiculo registroSelecionado = listaEstacionados.getSelectionModel().getSelectedItem();
 
-            if (itemSelecionado == null || itemSelecionado.isEmpty()) {
+            if (registroSelecionado == null) {
                 System.out.println("Nenhum veículo selecionado para saída.");
 
                 Alert alerta = new Alert(Alert.AlertType.WARNING);
@@ -161,32 +190,17 @@ public class JParkingScreen extends Application {
                 return;
             }
 
+
             try {
-                String placaComColchete = itemSelecionado.substring(itemSelecionado.indexOf('[') + 1, itemSelecionado.indexOf(']'));
-                String placaVeiculo = placaComColchete.split(":")[1].trim();
-
-                String registroCompleto = itemSelecionado + " | Saída: " + LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
-                repositorio.gravarSaida(registroCompleto);
-
-                repositorio.removerVeiculo(placaVeiculo);
-
-                listaEstacionados.getItems().remove(itemSelecionado);
-
-                int novasVagasEstacionadas = repositorio.contarVeiculosEstacionados();
-                int novasVagasLivres = VAGAS_TOTAIS - novasVagasEstacionadas;
-                labelVagas.setText("Vagas Livres: " + novasVagasLivres + "/" + VAGAS_TOTAIS);
-
-                System.out.println("Veículo liberado: " + itemSelecionado + " (Placa: " + placaVeiculo + ")");
-
                 Stage Stage3 = new Stage();
-                JParkingSaida.NovaTela novaTela = new JParkingSaida.NovaTela();
-                novaTela.start(Stage3);
+                JParkingSaida.NovaTela novaTela = new JParkingSaida.NovaTela(registroSelecionado, this);
+                novaTela.iniciar(Stage3);
 
                 Stage stageAtual = (Stage) btnSaida.getScene().getWindow();
                 stageAtual.close();
 
             } catch (Exception e) {
-                System.err.println("Erro ao processar a saída ou extrair a placa:");
+                System.err.println("Erro ao processar a extração da placa!!");
                 e.printStackTrace();
             }
         });
@@ -236,6 +250,18 @@ public class JParkingScreen extends Application {
                         "-fx-text-fill: #106DB5;"
         );
 
+        btnHistoricoDeSaidas.setOnAction(eventoRelatorioSaida -> {
+            try {
+                Stage stageRelatorio = new Stage();
+                JParkingRelatorioSaida telaRelatorio = new JParkingRelatorioSaida();
+                telaRelatorio.start(stageRelatorio);
+
+            } catch (Exception e) {
+                System.err.println("Erro ao abrir a tela de relatórios:");
+                e.printStackTrace();
+            }
+        });
+
         HBox headerRelatorios = new HBox(btnVeiculosEstacionados, btnHistoricoDeSaidas);
         headerTop.setAlignment(Pos.CENTER);
 
@@ -250,4 +276,6 @@ public class JParkingScreen extends Application {
         stage.setScene(scene);
         stage.show();
     }
+
+
 }
