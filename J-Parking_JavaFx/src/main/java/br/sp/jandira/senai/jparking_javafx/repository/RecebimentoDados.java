@@ -103,4 +103,40 @@ public class RecebimentoDados {
         }
     }
 
+    public int contarVeiculosEstacionados() {
+        Path arquivo = Path.of("C:\\Users\\felix\\J-parking\\J-Parking_JavaFx\\src\\main\\resources\\arquivos\\veiculosEstacionados.csv");
+        int contador = 0;
+        try {
+            contador = (int) Files.readAllLines(arquivo)
+                    .stream()
+                    .filter(linha -> linha.split(";").length >= 7)
+                    .count();
+        } catch (IOException e) {
+            System.err.println("Erro ao contar veículos estacionados: " + e.getMessage());
+        }
+        return contador;
+    }
+
+    public void removerVeiculo(String placaVeiculo) {
+        Path arquivo = Path.of("C:\\Users\\felix\\J-parking\\J-Parking_JavaFx\\src\\main\\resources\\arquivos\\veiculosEstacionados.csv");
+        List<String> linhasAtualizadas = new ArrayList<>();
+
+        try {
+            List<String> todasAsLinhas = Files.readAllLines(arquivo);
+            for (String linha : todasAsLinhas) {
+                String[] campos = linha.split(";");
+
+                if (campos.length >= 6 && !campos[5].trim().equalsIgnoreCase(placaVeiculo)) {
+                    linhasAtualizadas.add(linha);
+                }
+            }
+
+            Files.write(arquivo, linhasAtualizadas, StandardOpenOption.TRUNCATE_EXISTING);
+
+        } catch (IOException e) {
+            System.err.println("Erro ao remover veículo do arquivo: " + e.getMessage());
+        }
+    }
+
+
 }

@@ -22,6 +22,8 @@ import java.util.List;
 import java.util.Objects;
 
 public class JParkingScreen extends Application {
+    RecebimentoDados repositorio = new RecebimentoDados();
+    int VAGAS_TOTAIS = 50;
 
     @Override
     public void start(Stage stage) throws IOException {
@@ -57,7 +59,10 @@ public class JParkingScreen extends Application {
         cardEsquerda.setStyle("-fx-background-color: #106DB5; -fx-border-color: white; -fx-border-width: 2px; -fx-border-radius: 10px; -fx-background-radius: 10px;");
 
         //Carros Estacionados listView
-        Label labelVagas = new Label("Vagas Livres: 20/50");
+        int veiculosEstacionados = repositorio.contarVeiculosEstacionados();
+        int vagasLivres = VAGAS_TOTAIS - veiculosEstacionados;
+
+        Label labelVagas = new Label("Vagas Livres: " + vagasLivres + "/" + VAGAS_TOTAIS);
         labelVagas.setTextFill(Color.WHITE);
         labelVagas.setFont(Font.font("Arial", 24));
         labelVagas.setStyle("-fx-background-color: rgba(255,255,255,0.3); -fx-background-radius: 5px; -fx-padding: 5 15 5 15;");
@@ -73,16 +78,13 @@ public class JParkingScreen extends Application {
         Separator linha = new Separator();
         linha.setStyle("-fx-background-color: white; -fx-pref-height: 1px;");
 
-
         ListView listaEstacionados = new ListView();
         listaEstacionados.setMinHeight(800);
 
-        RecebimentoDados repositorio = new RecebimentoDados();
         List<String> veiculos = repositorio.lerVeiculosEstacionados();
         listaEstacionados.getItems().addAll(veiculos);
 
         cardEsquerda.getChildren().addAll(headerTop, headerTitle, linha, listaEstacionados);
-
 
         VBox colunaDireita = new VBox(20);
         colunaDireita.setAlignment(Pos.TOP_CENTER);
@@ -160,6 +162,22 @@ public class JParkingScreen extends Application {
             }
 
             try {
+                String placaComColchete = itemSelecionado.substring(itemSelecionado.indexOf('[') + 1, itemSelecionado.indexOf(']'));
+                String placaVeiculo = placaComColchete.split(":")[1].trim();
+
+                String registroCompleto = itemSelecionado + " | Saída: " + LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
+                repositorio.gravarSaida(registroCompleto);
+
+                repositorio.removerVeiculo(placaVeiculo);
+
+                listaEstacionados.getItems().remove(itemSelecionado);
+
+                int novasVagasEstacionadas = repositorio.contarVeiculosEstacionados();
+                int novasVagasLivres = VAGAS_TOTAIS - novasVagasEstacionadas;
+                labelVagas.setText("Vagas Livres: " + novasVagasLivres + "/" + VAGAS_TOTAIS);
+
+                System.out.println("Veículo liberado: " + itemSelecionado + " (Placa: " + placaVeiculo + ")");
+
                 Stage Stage3 = new Stage();
                 JParkingSaida.NovaTela novaTela = new JParkingSaida.NovaTela();
                 novaTela.start(Stage3);
@@ -168,7 +186,7 @@ public class JParkingScreen extends Application {
                 stageAtual.close();
 
             } catch (Exception e) {
-                System.err.println("Erro ao processar a saída:");
+                System.err.println("Erro ao processar a saída ou extrair a placa:");
                 e.printStackTrace();
             }
         });
