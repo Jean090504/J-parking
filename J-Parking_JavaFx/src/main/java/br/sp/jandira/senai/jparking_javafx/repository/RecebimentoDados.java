@@ -252,7 +252,20 @@ public class RecebimentoDados {
 
         String macPath = "/Users/25203640/IdeaProjects/J-parking/J-Parking_JavaFx/src/main/resources/arquivos/" + fileName;
 
+        String windowsPath = "C:\\Users\\...\\J-parking\\J-Parking_JavaFx\\src\\main\\resources\\arquivos\\" + fileName;
+
+        try {
+            Path windowsFile = Path.of(windowsPath);
+            if (Files.exists(windowsFile)) {
+                return windowsFile;
+            }
+        } catch (Exception e) {
+            // Ignora
+        }
+
+        System.err.println("Atenção: Nenhum arquivo foi encontrado. Retornando Path de MAC como fallback.");
         return Path.of(macPath);
+
     }
 
 
