@@ -30,7 +30,7 @@ public class RecebimentoDados {
         formatador = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
         horaEntrada = horaAtual.format(formatador);
 
-        Path arquivo = Path.of("C:\\Users\\felix\\J-parking\\J-Parking_JavaFx\\src\\main\\resources\\arquivos\\veiculosEstacionados.csv");
+        Path arquivo = getFilePath("veiculosEstacionados.csv");
         try {
             Files.writeString(arquivo,   cliente.id + ";" + cliente.nomeProprietario + ";" + cliente.modeloVeiculo + ";" + cliente.cor + ";" + cliente.marcaVeiculo + ";" + cliente.placaVeiculo+ ";" + horaEntrada + "\n", StandardOpenOption.APPEND);
             System.out.println("Nova entrada!!!");
@@ -45,8 +45,9 @@ public class RecebimentoDados {
 
         // Opção 1 : C:\\Users\\felix\\J-parking\\J-Parking_JavaFx\\src\\main\\resources\\arquivos\\veiculosEstacionados.csv
         // Opção 2 : C:\\Users\\25203640\\Desktop\\J-parking\\J-Parking_JavaFx\\src\\main\\resources\\arquivos\\veiculosEstacionados.csv
+        // Opção 3 :  /Users/25203640/IdeaProjects/J-parking/J-Parking_JavaFx/resouces/arquivos/veiculosEstacionados.csv
 
-        Path arquivo = Path.of("C:\\Users\\felix\\J-parking\\J-Parking_JavaFx\\src\\main\\resources\\arquivos\\veiculosEstacionados.csv");
+        Path arquivo = getFilePath("veiculosEstacionados.csv");
 
         try {
             return Files.readAllLines(arquivo)
@@ -75,7 +76,7 @@ public class RecebimentoDados {
     }
 
     public List<RepositoryHistoricoVeiculo> lerHistoricoSaidas() {
-        Path arquivo = Path.of("C:\\Users\\felix\\J-parking\\J-Parking_JavaFx\\src\\main\\resources\\arquivos\\saidaVeiculos.csv");
+        Path arquivo = getFilePath("saidaVeiculos.csv");
 
         try {
             return Files.readAllLines(arquivo)
@@ -128,9 +129,9 @@ public class RecebimentoDados {
             String horaSaida = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
             String registroSaida = linhaCsvOriginal + ";" + horaSaida;
 
-            Path arquivoSaida = Path.of("C:\\Users\\felix\\J-parking\\J-Parking_JavaFx\\src\\main\\resources\\arquivos\\saidaVeiculos.csv");
+            Path arquivo = getFilePath("saidaVeiculos.csv");
             try {
-                Files.writeString(arquivoSaida, registroSaida + "\n", StandardOpenOption.APPEND);
+                Files.writeString(arquivo, registroSaida + "\n", StandardOpenOption.APPEND);
                 System.out.println("Registro de Saída adicionado ao histórico.");
             } catch (IOException e) {
                 System.out.println("Erro ao gravar no histórico de saídas.");
@@ -139,7 +140,7 @@ public class RecebimentoDados {
         }
 
     public int contarVeiculosEstacionados() {
-        Path arquivo = Path.of("C:\\Users\\felix\\J-parking\\J-Parking_JavaFx\\src\\main\\resources\\arquivos\\veiculosEstacionados.csv");
+        Path arquivo = getFilePath("veiculosEstacionados.csv");
         int contador = 0;
         try {
             contador = (int) Files.readAllLines(arquivo)
@@ -153,7 +154,7 @@ public class RecebimentoDados {
     }
 
     public void removerVeiculo(String placaVeiculo) {
-        Path arquivo = Path.of("C:\\Users\\felix\\J-parking\\J-Parking_JavaFx\\src\\main\\resources\\arquivos\\veiculosEstacionados.csv");
+        Path arquivo = getFilePath("veiculosEstacionados.csv");
         List<String> linhasAtualizadas = new ArrayList<>();
 
         try {
@@ -174,7 +175,7 @@ public class RecebimentoDados {
     }
 
     public double calcularFaturamentoDiario() {
-        Path arquivo = Path.of("C:\\Users\\felix\\J-parking\\J-Parking_JavaFx\\src\\main\\resources\\arquivos\\saidaVeiculos.csv");
+        Path arquivo = getFilePath("saidaVeiculos.csv");
         double precoPrimeiraHora = 10.00;
         double precoHoraSubsequente = 5.00;
         int limiteDeTempoArredondado = 5;
@@ -236,6 +237,22 @@ public class RecebimentoDados {
             System.err.println("Erro ao ler arquivo de histórico para faturamento: " + e.getMessage());
         }
         return faturamentoTotal;
+    }
+
+    private Path getFilePath(String fileName) {
+        try {
+            java.net.URL url = getClass().getResource("/arquivos/" + fileName);
+            if (url != null) {
+                return Path.of(url.toURI());
+            }
+        } catch (Exception e) {
+            // Ignora a exceção do ClassPath e tenta o caminho absoluto de fallback
+        }
+
+
+        String macPath = "/Users/25203640/IdeaProjects/J-parking/J-Parking_JavaFx/src/main/resources/arquivos/" + fileName;
+
+        return Path.of(macPath);
     }
 
 
