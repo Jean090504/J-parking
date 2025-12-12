@@ -125,9 +125,10 @@ public class JParkingEntrada extends Application {
         });
 
         btnVoltar = new Button("Voltar");
-        btnVoltar.setStyle("-fx-text-alignment: left; -fx-background-color: #cccccc;");
-        btnVoltar.setMinWidth(20);
-        btnVoltar.setMinHeight(20);
+        btnVoltar.setStyle("-fx-background-color: #A52424; -fx-text-fill: white; -fx-font-size: 18px; -fx-background-radius: 15px;");
+        btnVoltar.setPrefSize(100, 50);
+        btnVoltar.setTranslateX(-750);
+        btnVoltar.setTranslateY(-100);
 
         btnVoltar.setOnAction(evento -> {
             try {

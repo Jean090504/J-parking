@@ -17,7 +17,7 @@ public class Cliente {
     public String marcaVeiculo;
     public String placaVeiculo;
 
-    public void clienTeste(){
+    public void clienteTeste(){
 
     }
 

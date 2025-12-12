@@ -1,15 +1,11 @@
 package br.sp.jandira.senai.jparking_javafx.screen;
 
-import br.sp.jandira.senai.jparking_javafx.repository.Cliente;
 import br.sp.jandira.senai.jparking_javafx.repository.RecebimentoDados;
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
-import javafx.scene.control.Separator;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
@@ -20,6 +16,8 @@ import br.sp.jandira.senai.jparking_javafx.util.DashBoardFactory;
 import eu.hansolo.tilesfx.Tile;
 
 import java.io.IOException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Objects;
 
@@ -34,9 +32,9 @@ public class JParkingScreen extends Application {
         stage.setTitle("J-Parking");
 
         // Logo
-        try {
-            Image icon = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/img/J-parking.logo.png")));
-            stage.getIcons().add(icon);
+         try {
+            Image logo = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/img/J-parking.logo.png")));
+            stage.getIcons().add(logo);
         } catch (Exception e) {
             System.out.println("Erro no ícone.");
         }
@@ -139,8 +137,29 @@ public class JParkingScreen extends Application {
         btnSaida.setPrefSize(300, 80);
 
         btnSaida.setOnAction(evento -> {
-            try {
+            String itemSelecionado = (String) listaEstacionados.getSelectionModel().getSelectedItem();
 
+            if (itemSelecionado == null || itemSelecionado.isEmpty()) {
+                System.out.println("Nenhum veículo selecionado para saída.");
+
+                Alert alerta = new Alert(Alert.AlertType.WARNING);
+                alerta.setTitle("Atenção");
+                alerta.setHeaderText(null);
+                alerta.setContentText("Por favor, selecione um veículo na lista para processar a saída.");
+
+                try {
+                    Stage stageAlerta = (Stage) alerta.getDialogPane().getScene().getWindow();
+                    Image icon = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/img/J-parking.logo.png")));
+                    stageAlerta.getIcons().add(icon);
+                } catch (Exception e) {
+                    System.out.println("Erro ao carregar o ícone do alerta.");
+                }
+
+                alerta.showAndWait();
+                return;
+            }
+
+            try {
                 Stage Stage3 = new Stage();
                 JParkingSaida.NovaTela novaTela = new JParkingSaida.NovaTela();
                 novaTela.start(Stage3);
@@ -149,7 +168,7 @@ public class JParkingScreen extends Application {
                 stageAtual.close();
 
             } catch (Exception e) {
-                System.err.println("Erro ao abrir a nova tela:");
+                System.err.println("Erro ao processar a saída:");
                 e.printStackTrace();
             }
         });
@@ -175,6 +194,18 @@ public class JParkingScreen extends Application {
                         "-fx-padding: 5 15 5 15; " +
                         "-fx-text-fill: #106DB5;" // A cor do texto entra aqui
         );
+
+        btnVeiculosEstacionados.setOnAction(eventoRelatorioEstacionado -> {
+            try {
+                Stage stageRelatorio = new Stage();
+                JParkingRelatorioEstacionados telaRelatorio = new JParkingRelatorioEstacionados();
+                telaRelatorio.start(stageRelatorio);
+
+            } catch (Exception e) {
+                System.err.println("Erro ao abrir a tela de relatórios:");
+                e.printStackTrace();
+            }
+        });
 
 
         Button btnHistoricoDeSaidas = new Button("Histórico de Saídas");

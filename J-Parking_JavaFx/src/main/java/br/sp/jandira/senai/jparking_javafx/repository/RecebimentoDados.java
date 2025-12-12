@@ -12,6 +12,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 
 public class RecebimentoDados {
@@ -26,9 +27,9 @@ public class RecebimentoDados {
         formatador = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
         horaEntrada = horaAtual.format(formatador);
 
-        Path arquivo = Path.of("C:\\Users\\25203640\\Desktop\\J-parking\\J-Parking_JavaFx\\src\\main\\resources\\arquivos\\veiculosEstacionados.csv");
+        Path arquivo = Path.of("C:\\Users\\felix\\J-parking\\J-Parking_JavaFx\\src\\main\\resources\\arquivos\\veiculosEstacionados.csv");
         try {
-            Files.writeString(arquivo,   cliente.id + cliente.nomeProprietario + ";" + cliente.modeloVeiculo + ";" + cliente.cor + ";" + cliente.marcaVeiculo + ";" + cliente.placaVeiculo+ ";" + horaEntrada + "\n", StandardOpenOption.APPEND);
+            Files.writeString(arquivo,   cliente.id + ";" + cliente.nomeProprietario + ";" + cliente.modeloVeiculo + ";" + cliente.cor + ";" + cliente.marcaVeiculo + ";" + cliente.placaVeiculo+ ";" + horaEntrada + "\n", StandardOpenOption.APPEND);
             System.out.println("Nova entrada!!!");
         } catch (IOException e) {
             System.out.println("Erro ao abrir o arquivo!!!");
@@ -38,13 +39,34 @@ public class RecebimentoDados {
     }
 
     public List<String> lerVeiculosEstacionados() {
-        Cliente cliente = new Cliente();
 
-        Path arquivo = Path.of("C:\\Users\\25203640\\Desktop\\J-parking\\J-Parking_JavaFx\\src\\main\\resources\\arquivos\\veiculosEstacionados.csv");
+        // Opção 1 : C:\\Users\\felix\\J-parking\\J-Parking_JavaFx\\src\\main\\resources\\arquivos\\veiculosEstacionados.csv
+        // Opção 2 : C:\\Users\\25203640\\Desktop\\J-parking\\J-Parking_JavaFx\\src\\main\\resources\\arquivos\\veiculosEstacionados.csv
+
+        Path arquivo = Path.of("C:\\Users\\felix\\J-parking\\J-Parking_JavaFx\\src\\main\\resources\\arquivos\\veiculosEstacionados.csv");
 
         try {
-            Files.writeString(arquivo, cliente.id + ";" + cliente.nomeProprietario + ";" + cliente.modeloVeiculo + ";" + cliente.cor + ";" + cliente.marcaVeiculo + ";" + cliente.placaVeiculo+ ";" + horaEntrada + "\n", StandardOpenOption.APPEND);
-            System.out.println("Nova entrada!!!");
+            return Files.readAllLines(arquivo)
+                    .stream()
+                    .map(linha -> {
+                        String[] campos = linha.split(";");
+
+                        if (campos.length < 7) {
+                            return "Dados corrompidos ou linha incompleta.";
+                        }
+
+                        return String.format(
+                                "[Placa: %s] - %s (%s/%s/%s) | Entrada: %s",
+                                campos[5],  // Placa
+                                campos[1],  // Nome Proprietário
+                                campos[4],  // Marca Veículo
+                                campos[2],  // Modelo Veículo
+                                campos[3],  // Cor Veículo
+                                campos[6]   // Hora Entrada
+                        );
+                    })
+                    .collect(Collectors.toList());
+
         } catch (IOException e) {
             System.err.println("Erro ao ler o arquivo de veículos estacionados: " + e.getMessage());
             return new ArrayList<>();
@@ -65,7 +87,20 @@ public class RecebimentoDados {
         cliente.placaVeiculo = placaVeiculo.getText();
 
         gravarCliente(cliente);
-
-
     }
+
+    public void gravarSaida(String registroSaida) {
+        // Opção 1 : C:\\Users\\felix\\J-parking\\J-Parking_JavaFx\\src\\main\\resources\\arquivos\\veiculosEstacionados.csv
+        // Opção 2 : C:\\Users\\25203640\\Desktop\\J-parking\\J-Parking_JavaFx\\src\\main\\resources\\arquivos\\veiculosEstacionados.csv
+
+        Path arquivoSaida = Path.of("C:\\Users\\felix\\J-parking\\J-Parking_JavaFx\\src\\main\\resources\\arquivos\\saidaVeiculos.csv");
+        try {
+            Files.writeString(arquivoSaida, registroSaida + "\n", StandardOpenOption.APPEND);
+            System.out.println("Registro de Saída adicionado ao histórico.");
+        } catch (IOException e) {
+            System.out.println("Erro ao gravar no histórico de saídas.");
+            System.out.println(e.getMessage());
+        }
+    }
+
 }

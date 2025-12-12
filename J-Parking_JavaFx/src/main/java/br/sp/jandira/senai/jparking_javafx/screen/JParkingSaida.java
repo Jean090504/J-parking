@@ -68,13 +68,15 @@ public class JParkingSaida {
 
 
             Button btnVoltarMain = new Button("Voltar");
-            btnVoltarMain.setStyle("-fx-background-color: #A52424; -fx-text-fill: white; -fx-font-size: 18px; -fx-background-radius: 20px;");
+            btnVoltarMain.setStyle("-fx-background-color: #A52424; -fx-text-fill: white; -fx-font-size: 18px; -fx-background-radius: 15px;");
             btnVoltarMain.setFont(Font.font("Arial", FontWeight.BOLD, 20));
             btnVoltarMain.setPrefSize(100, 50);
             btnVoltarMain.setTranslateX(-750);
             btnVoltarMain.setTranslateY(-100);
 
             btnVoltarMain.setOnAction(evento -> {
+
+
                 try {
                     Stage stageInicial = new Stage();
                     JParkingScreen telaInicial = new JParkingScreen();
@@ -125,11 +127,6 @@ public class JParkingSaida {
                     infoCliente,
                     placa
             );
-
-
-
-
-
 
             Label tempoPermanencia = new Label();
             tempoPermanencia.setText("Tempo de permanencia:     " + totalDeHoras + "Hrs");
@@ -186,7 +183,7 @@ public class JParkingSaida {
 
             Button btnSaida = new Button();
             btnSaida.setText("Saída");
-            btnSaida.setStyle("-fx-background-color: #A52424; -fx-text-fill: white; -fx-font-size: 18px; -fx-background-radius: 20px;");
+            btnSaida.setStyle("-fx-background-color: #136E16; -fx-text-fill: white; -fx-font-size: 18px; -fx-background-radius: 20px;");
             btnSaida.setFont(Font.font("Arial", FontWeight.BOLD, 20));
             btnSaida.setPrefSize(300, 80);
 
