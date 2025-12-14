@@ -1,18 +1,12 @@
 :root {
     --blue-header: #0F86C6;
-    --blue-light-bg: #82CFF0; /* Azul claro do fundo inferior */
-    --blue-card: #2CA3DE;     /* Azul dos cards de funcionalidade */
+    --blue-light-bg: #82CFF0; 
+    --blue-card: #2CA3DE;     
     --red-j: #C9252C;
-    --green-btn: #9CD76B;     /* Verde do botão */
+    --green-btn: #9CD76B;    
     --footer-bg: #0B6496;
     --font-barlow: "Barlow Condensed", sans-serif;
     --font-varela: "Varela Round", sans-serif;
-}
-
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
 }
 
 body {
@@ -20,7 +14,7 @@ body {
     overflow-x: hidden;
 }
 
-/* HEADER */
+
 header {
     background-color: var(--blue-header);
     height: 60px;
@@ -52,7 +46,7 @@ nav a {
     width: 20px;
 }
 
-/* HERO SECTION */
+
 .hero {
     background: white;
     padding: 40px 0;
@@ -104,7 +98,7 @@ nav a {
     border-radius: 10px;
 }
 
-/* FEATURES SECTION */
+
 .features {
     position: relative;
     padding: 60px 0;
@@ -314,22 +308,59 @@ nav a {
 
 footer {
     background-color: var(--footer-bg);
-    height: 50px;
+    height: 140px; 
+    padding: 20px 40px;
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0 40px;
+    flex-direction: column;
+    gap: 10px;
     color: white;
     font-size: 12px;
 }
 
-.footer-links span {
-    margin-right: 20px;
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    width: 100%;
+}
+
+.footer-links {
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.footer-links a {
+    color: white;
+    text-decoration: none;
     cursor: pointer;
 }
 
-.footer-social img {
+.footer-social {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+}
+
+.social-icons {
+    display: flex;
+    gap: 10px;
+    margin-top: 5px;
+}
+
+.social-icons img {
     width: 20px;
-    margin-left: 10px;
-    filter: brightness(0) invert(1); /* Ícones brancos */
+    filter: brightness(0) invert(1);
+    cursor: pointer;
+}
+
+#copyright {
+    display: block;
+    width: 100%;
+    text-align: center;
+    font-size: 10px;
+    padding: 5px;
+    border-radius: 4px;
 }
