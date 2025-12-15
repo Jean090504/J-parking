@@ -1,5 +1,5 @@
 :root {
-    --blue-header: #0F86C6;
+    --blue-header: #106DB5;
     --blue-light-bg: #82CFF0; 
     --blue-card: #2CA3DE;     
     --red-j: #C9252C;
@@ -7,6 +7,9 @@
     --footer-bg: #0B6496;
     --font-barlow: "Barlow Condensed", sans-serif;
     --font-varela: "Varela Round", sans-serif;
+}
+html{
+    scroll-behavior: smooth;
 }
 
 body {
@@ -25,12 +28,13 @@ header {
 }
 
 .header-logo {
-    height: 40px;
+    height: 62px;
 }
 
 nav {
     display: flex;
     gap: 30px;
+    height: 30px;
 }
 
 nav a {
@@ -41,10 +45,27 @@ nav a {
     align-items: center;
     gap: 8px;
 }
+.baixar, .devTeam, .funcionalTxt{
+    display: flex;
+    flex-direction: row;
+    width: 150px ;
+    height: 20px;
+    transition: 100ms;
+}
+
+.baixar:hover, .devTeam:hover, .funcionalTxt :hover{
+    width: 155px ;
+    height: 25px;
+    font-size: 20px;
+    transition: 100ms;
+   
+    
+}
 
 .nav-icon {
     width: 20px;
 }
+
 
 
 .hero {
@@ -174,6 +195,10 @@ nav a {
 
 .arrow-btn img {
     width: 50px;
+}
+.galery{
+    display: flex;
+    flex-direction: row;
 }
 
 .profile-card {

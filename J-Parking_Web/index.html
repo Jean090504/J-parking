@@ -1,14 +1,17 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>J-Parking</title>
-    
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@300;400;500;600&family=Varela+Round&display=swap" rel="stylesheet">
-    
+    <link
+        href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@300;400;500;600&family=Varela+Round&display=swap"
+        rel="stylesheet">
+
     <link rel="stylesheet" href="./reset.css">
     <link rel="stylesheet" href="./style.css">
 </head>
@@ -19,9 +22,15 @@
             <img src="img/J-parkingLogo2.png" alt="Logo" class="header-logo">
         </div>
         <nav>
-            <a href="#">Baixe aqui <img src="./img/download-image.png" class="nav-icon"></a>
-            <a href="#">Time de Devs <img src="./img/dev-team.png" class="nav-icon"></a>
-            <a href="#">Funcionalidades <img src="./img/support.png" class="nav-icon"></a>
+            <div class="baixar">
+                <a  href="#download-screen">Baixe aqui <img src="./img/download-image.png" class="nav-icon" ></a>
+            </div>
+            <div class="devTeam">
+                <a  href="#dev-team">Time de Devs <img src="./img/dev-team.png" class="nav-icon" ></a>
+            </div>
+            <div class="funcionalTxt" >
+                <a href="#app-function">Funcionalidades <img src="./img/support.png" class="nav-icon" ></a>
+            </div>
         </nav>
     </header>
 
@@ -44,53 +53,88 @@
             </div>
         </section>
 
-        <section class="features">
+        <section id="app-function" class="features">
             <div class="features-grid">
                 <div class="feature-card">
                     <img src="./img/monitoramento.png" alt="Icon">
                     <h3>Monitoramento visual</h3>
-                    <p>TENHA UMA VISÃO CLARA E IMEDIATA DA OCUPAÇÃO DO SEU ESTACIONAMENTO ATRAVÉS DE UMA TABELA INTERATIVA NA TELA PRINCIPAL, SEMPRE ATUALIZADA.</p>
+                    <p>TENHA UMA VISÃO CLARA E IMEDIATA DA OCUPAÇÃO DO SEU ESTACIONAMENTO ATRAVÉS DE UMA TABELA
+                        INTERATIVA NA TELA PRINCIPAL, SEMPRE ATUALIZADA.</p>
                 </div>
 
                 <div class="feature-card">
                     <img src="./img/check-mark.png" alt="Icon">
                     <h3>Check-In Ágil</h3>
-                    <p>REGISTRO RÁPIDO DE VEÍCULOS APENAS COM PLACA, MODELO, COR E PROPRIETÁRIO. A DATA E HORA SÃO CAPTURADAS AUTOMATICAMENTE PELO SISTEMA PARA EVITAR ERROS.</p>
+                    <p>REGISTRO RÁPIDO DE VEÍCULOS APENAS COM PLACA, MODELO, COR E PROPRIETÁRIO. A DATA E HORA SÃO
+                        CAPTURADAS AUTOMATICAMENTE PELO SISTEMA PARA EVITAR ERROS.</p>
                 </div>
 
                 <div class="feature-card">
                     <img src="./img/calc-svgrepo-com.png" alt="Icon">
                     <h3>Cálculo automático de cobrança</h3>
-                    <p>ESQUEÇA AS CONTAS MANUAIS. O SISTEMA CALCULA O VALOR EXATO BASEADO NO TEMPO DE PERMANÊNCIA, APLICANDO REGRAS DE HORA FIXA, ADICIONAIS E TOLERÂNCIA DE 5 MINUTOS.</p>
+                    <p>ESQUEÇA AS CONTAS MANUAIS. O SISTEMA CALCULA O VALOR EXATO BASEADO NO TEMPO DE PERMANÊNCIA,
+                        APLICANDO REGRAS DE HORA FIXA, ADICIONAIS E TOLERÂNCIA DE 5 MINUTOS.</p>
                 </div>
 
                 <div class="feature-card">
                     <img src="./img/Group.png" alt="Icon">
                     <h3>Segurança de dados</h3>
-                    <p>SEUS DADOS ESTÃO SEGUROS. TUDO É SALVO INSTANTANEAMENTE EM ARQUIVOS LOCAIS (CSV), GARANTINDO CONTINUIDADE DO SERVIÇO E GERANDO UM HISTÓRICO COMPLETO DE TODAS AS SAÍDAS.</p>
+                    <p>SEUS DADOS ESTÃO SEGUROS. TUDO É SALVO INSTANTANEAMENTE EM ARQUIVOS LOCAIS (CSV), GARANTINDO
+                        CONTINUIDADE DO SERVIÇO E GERANDO UM HISTÓRICO COMPLETO DE TODAS AS SAÍDAS.</p>
                 </div>
             </div>
         </section>
 
-        <section class="profile">
+        <section id="dev-team" class="profile">
             <button class="arrow-btn left">
                 <img src="./img/seta1.png" alt="Anterior">
             </button>
 
-            <div class="profile-card">
-                <div class="profile-avatar">
-                    <img src="./img/devicone.png" alt="Jean Costa">
+            <div class="galery">
+
+                <div class="profile-card">
+                    <div class="profile-avatar">
+                        <img src="./img/devicone.png" alt="Jean Costa">
+                    </div>
+                    <div class="profile-info">
+                        <h3>Jean Costa</h3>
+                        <p class="profile-desc">
+                            Back-end
+                        </p>
+                        <div class="profile-social">
+                            <img src="./img/linkedin 1.png" alt="LinkedIn">
+                            <img src="./img/github-sign 1.png" alt="GitHub">
+                        </div>
+                    </div>
                 </div>
-                <div class="profile-info">
-                    <h3>Jean Costa</h3>
-                    <p class="profile-desc">
-                        Back-end sliper sliteris ispsin litiun<br>
-                        volumetric satorium gojou logol portifum<br>
-                        latirus sarturios latifundiarius taneskus
-                    </p>
-                    <div class="profile-social">
-                        <img src="./img/linkedin 1.png" alt="LinkedIn">
-                        <img src="./img/github-sign 1.png" alt="GitHub">
+                <div class="profile-card">
+                    <div class="profile-avatar">
+                        <img src="./img/devicone.png" alt="JuanFonseca">
+                    </div>
+                    <div class="profile-info">
+                        <h3>Juan Fonseca</h3>
+                        <p class="profile-desc">
+                            Front-end
+                        </p>
+                        <div class="profile-social">
+                            <img src="./img/linkedin 1.png" alt="LinkedIn">
+                            <img src="./img/github-sign 1.png" alt="GitHub">
+                        </div>
+                    </div>
+                </div>
+                <div class="profile-card">
+                    <div class="profile-avatar">
+                        <img src="./img/devicone.png" alt="AllanAlmeida">
+                    </div>
+                    <div class="profile-info">
+                        <h3>Allan Almeida</h3>
+                        <p class="profile-desc">
+                            Levantador de requisitos
+                        </p>
+                        <div class="profile-social">
+                            <img src="./img/linkedin 1.png" alt="LinkedIn">
+                            <img src="./img/github-sign 1.png" alt="GitHub">
+                        </div>
                     </div>
                 </div>
             </div>
@@ -100,21 +144,24 @@
             </button>
         </section>
 
-        <section class="social-proof">
-            
+        <section id="download-screen" class="social-proof">
+
             <div class="testimonials">
                 <div class="testi-card">
                     <img src="./img/user4.png" alt="Foto">
-                    <p>O sistema de gerenciamento apresenta uma estrutura robusta e eficiente... permitindo que operações como controle de vagas... sejam realizadas de forma rápida.</p>
+                    <p>O sistema de gerenciamento apresenta uma estrutura robusta e eficiente... permitindo que
+                        operações como controle de vagas... sejam realizadas de forma rápida.</p>
                 </div>
                 <div class="testi-card">
                     <img src="./img/user1.png" alt="Foto">
-                    <p>A usabilidade do sistema é um destaque: os fluxos são claros, a navegação é lógica e os módulos se integram muito bem.</p>
+                    <p>A usabilidade do sistema é um destaque: os fluxos são claros, a navegação é lógica e os módulos
+                        se integram muito bem.</p>
                 </div>
 
                 <div class="testi-card">
                     <img src="./img/user3.png" alt="Foto">
-                    <p>A organização das informações é objetiva e contribui para a tomada de decisões, reduzindo falhas humanas.</p>
+                    <p>A organização das informações é objetiva e contribui para a tomada de decisões, reduzindo falhas
+                        humanas.</p>
                 </div>
                 <div class="testi-card">
                     <img src="./img/user2.png" alt="Foto">
@@ -125,7 +172,8 @@
             <div class="cta-area">
                 <div class="cta-text">
                     <h2>Junte-se aos 50 estacionamentos<br>que já modernizaram sua gestão!</h2>
-                    <button class="download-btn">DOWNLOAD <img src="img/download-image.png" style="width:15px; filter: invert(1);"></button>
+                    <button class="download-btn">DOWNLOAD <img src="img/download-image.png"
+                            style="width:15px; filter: invert(1);"></button>
                 </div>
                 <div class="cta-image">
                     <img src="./img/notbook.png" alt="Sistema no Notebook">
@@ -135,7 +183,7 @@
         </section>
     </main>
 
-   <footer>
+    <footer>
         <div class="footer-content">
             <div class="footer-links">
                 <a href="#">Termos de Uso</a>
@@ -155,4 +203,5 @@
         <span id="copyright">© 2024 J-Parking. Desenvolvido por Allan, Jean e Juan. Todos os direitos reservados.</span>
     </footer>
 </body>
+
 </html>
