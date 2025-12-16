@@ -480,15 +480,220 @@ nav a {
     gap: 53px;
     max-width: 509px;
 }
-.feature-card{
+.feature-card h3{
     height: 200px;
-
-
+    font-size:18px ;
 }
-#calculadora{
-    height: 80px;
-}
-.feature-card img {
+
+.feature-card img{
     height: 40px;
+    font-size: 10px;
+}
+.feature-card p{
+    font-size: 8px;
+}
+.profile-card{
+    
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 300px;
+    height: 400px;
+    box-shadow: -2px 3px 7px 6px rgba(0, 0, 0, 0.1);
+    padding: 40px;
+    border-radius: 20px;
+
+}
+.testi-card{
+    flex-direction: column;
+    gap: 10px;  
+    width: 190px;
+    height: 227px;
+}
+p {
+    text-align: center;
+}
+.cta-text h2 {
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 20px;
+    padding: 0 10px;
+}
+.cta-image{
+    padding: 0 10px;
+}
+.download-btn {
+    display: flex;
+    margin-top: 30px;
+    justify-content: center; /* Centraliza horizontalmente */
+    align-items: center; /* Centraliza verticalmente */
+    text-align: center; /* Garante que o texto fique centralizado */
+    padding: 12px 50px;
+    font-size: 30px;
+    width: 400px;
+    height: 50px;
+}
+/*Celular*/
+@media (max-width: 320px){
+
+    html{
+        scroll-behavior: smooth;
+    }
+    header{
+        display: flex;
+        flex-direction: row;
+        padding: 0 10px;
+        gap: 100px;
+        justify-content: start;
+    }
+    .download-header{
+        background-color: var(--green-btn);
+        width: 100px;
+        height: 30px;
+        align-items: center;
+        justify-content: center;
+        border-radius: 10px;
+        box-shadow: -2px 3px 7px 6px rgba(0, 0, 0, 0.1);
+    }    
+    body {
+        font-family: var(--font-barlow);
+        overflow-x: hidden;
+    }
+    .hero-content{
+        flex-direction: row;
+        gap: 10px;
+        padding: 10px;
+    }
+    .steps-box{
+        width: 120px;
+    }
+    
+    header {
+        background-color: var(--blue-header);
+        height: 60px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+    .feature-card p {
+        font-size: 7px;
+        line-height: 1.2;
+        font-weight: 200;
+        text-transform: uppercase;
+    }
+    nav {
+        display: flex;
+        gap: 10px;
+        height: 13px;
+        
+    }
+    nav a {
+        color: white;
+        text-decoration: none;
+        font-size: 14px;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+    }
+    .devTeam, .funcionalTxt {
+        display: flex;
+        flex-direction: row;
+        width: 90px;
+        height: 12px;
+        transition: 100ms;
+    }
+    .baixar{
+        display: flex;
+        flex-direction: row;
+        width: 80px;
+        height: 12px;
+        transition: 100ms
+    }
+    .baixar:hover, .devTeam:hover, .funcionalTxt :hover {
+        width: 97px;
+        height: 14px;
+        font-size: 20px;
+        transition: 100ms;
+       
+    }
+   .mobile-visibility{
+        display: none;
+    }
+
+    .steps-box {
+        background-color: #3B9DD8;
+        color: white;
+        padding: 16px 40px;
+        border-radius: 8px;
+        text-align: left;
+        box-shadow: -2px 2px 10px rgba(0, 0, 0, 0.2);
+    }
+    .steps-box p {
+        font-size: 17px;
+        margin: 5px 0;
+    }
+    .garage-img {
+        width: 201px;
+        border-radius: 10px;
+    }
+    .features-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 53px;
+        max-width: 509px;
+    }
+    .feature-card h3{
+        height: 200px;
+        font-size:18px ;
+    }
+    
+    .feature-card img{
+        height: 40px;
+        font-size: 10px;
+    }
+    .feature-card p{
+        font-size: 8px;
+    }
+    .profile-card{
+        
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        width: 300px;
+        height: 400px;
+        box-shadow: -2px 3px 7px 6px rgba(0, 0, 0, 0.1);
+        padding: 40px;
+        border-radius: 20px;
+    
+    }
+    .testi-card{
+        flex-direction: column;
+        gap: 10px;  
+        width: 190px;
+        height: 227px;
+    }
+    p {
+        text-align: center;
+    }
+    .cta-text h2 {
+        font-size: 20px;
+        font-weight: 600;
+        margin-bottom: 20px;
+        padding: 0 10px;
+    }
+    .cta-image{
+        padding: 0 10px;
+    }
+    .download-btn {
+        display: flex;
+        margin-top: 30px;
+        justify-content: center; /* Centraliza horizontalmente */
+        align-items: center; /* Centraliza verticalmente */
+        text-align: center; /* Garante que o texto fique centralizado */
+        padding: 12px 50px;
+        font-size: 30px;
+        width: 400px;
+        height: 50px;
+    }
 }
 }
