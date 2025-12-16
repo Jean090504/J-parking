@@ -147,7 +147,7 @@ nav a {
     display: flex;
     flex-direction: column;
     align-items: center;
-    height: 280px;
+    height: 25vh;
 }
 
 .feature-card img {
@@ -388,4 +388,107 @@ footer {
     font-size: 10px;
     padding: 5px;
     border-radius: 4px;
+}
+
+/*tablet*/
+@media (max-width: 465px){
+
+html{
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: var(--font-barlow);
+    overflow-x: hidden;
+}
+.hero-content{
+    flex-direction: row;
+    gap: 10px;
+    padding: 10px;
+}
+.steps-box{
+    width: 250px;
+}
+
+header {
+    background-color: var(--blue-header);
+    height: 60px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.feature-card p {
+    font-size: 7px;
+    line-height: 1.2;
+    font-weight: 300;
+    text-transform: uppercase;
+}
+nav {
+    display: flex;
+    gap: 10px;
+    height: 13px;
+    
+}
+nav a {
+    color: white;
+    text-decoration: none;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+.devTeam, .funcionalTxt {
+    display: flex;
+    flex-direction: row;
+    width: 90px;
+    height: 12px;
+    transition: 100ms;
+}
+.baixar{
+    display: flex;
+    flex-direction: row;
+    width: 80px;
+    height: 12px;
+    transition: 100ms
+}
+.baixar:hover, .devTeam:hover, .funcionalTxt :hover {
+    width: 97px;
+    height: 14px;
+    font-size: 20px;
+    transition: 100ms;
+}
+
+.steps-box {
+    background-color: #3B9DD8;
+    color: white;
+    padding: 16px 40px;
+    border-radius: 8px;
+    text-align: left;
+    box-shadow: -2px 2px 10px rgba(0, 0, 0, 0.2);
+}
+.steps-box p {
+    font-size: 17px;
+    margin: 5px 0;
+}
+.garage-img {
+    width: 201px;
+    border-radius: 10px;
+}
+.features-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 53px;
+    max-width: 509px;
+}
+.feature-card{
+    height: 200px;
+
+
+}
+#calculadora{
+    height: 80px;
+}
+.feature-card img {
+    height: 40px;
+}
 }
