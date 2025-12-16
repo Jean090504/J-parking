@@ -1,14 +1,15 @@
 :root {
     --blue-header: #106DB5;
-    --blue-light-bg: #82CFF0; 
-    --blue-card: #2CA3DE;     
+    --blue-light-bg: #82CFF0;
+    --blue-card: #2CA3DE;
     --red-j: #C9252C;
-    --green-btn: #9CD76B;    
+    --green-btn: #9CD76B;
     --footer-bg: #0B6496;
     --font-barlow: "Barlow Condensed", sans-serif;
     --font-varela: "Varela Round", sans-serif;
 }
-html{
+
+html {
     scroll-behavior: smooth;
 }
 
@@ -45,21 +46,26 @@ nav a {
     align-items: center;
     gap: 8px;
 }
-.baixar, .devTeam, .funcionalTxt{
+
+.baixar,
+.devTeam,
+.funcionalTxt {
     display: flex;
     flex-direction: row;
-    width: 150px ;
+    width: 150px;
     height: 20px;
     transition: 100ms;
 }
 
-.baixar:hover, .devTeam:hover, .funcionalTxt :hover{
-    width: 155px ;
+.baixar:hover,
+.devTeam:hover,
+.funcionalTxt :hover {
+    width: 155px;
     height: 25px;
     font-size: 20px;
     transition: 100ms;
-   
-    
+
+
 }
 
 .nav-icon {
@@ -106,7 +112,7 @@ nav a {
     padding: 25px 40px;
     border-radius: 8px;
     text-align: left;
-    box-shadow: -5px 5px 10px rgba(0,0,0,0.2);
+    box-shadow: -5px 5px 10px rgba(0, 0, 0, 0.2);
 }
 
 .steps-box p {
@@ -123,7 +129,7 @@ nav a {
 .features {
     position: relative;
     padding: 60px 0;
-    background-image: url('./img/fundoFuncionalidades.png'); 
+    background-image: url('./img/fundoFuncionalidades.png');
     background-size: cover;
     background-position: center;
     display: flex;
@@ -143,7 +149,7 @@ nav a {
     padding: 30px;
     border-radius: 10px;
     text-align: center;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -153,7 +159,8 @@ nav a {
 .feature-card img {
     height: 60px;
     margin-bottom: 15px;
-    filter: brightness(0) invert(1); /* Deixa o ícone branco */
+    filter: brightness(0) invert(1);
+    /* Deixa o ícone branco */
 }
 
 .feature-card h3 {
@@ -196,7 +203,8 @@ nav a {
 .arrow-btn img {
     width: 50px;
 }
-.galery{
+
+.galery {
     display: flex;
     flex-direction: row;
 }
@@ -206,7 +214,7 @@ nav a {
     align-items: center;
     gap: 50px;
     width: 800px;
-    box-shadow: 0 0 20px rgba(0,0,0,0.1); 
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
     padding: 40px;
     border-radius: 20px;
     background: white;
@@ -238,6 +246,17 @@ nav a {
     margin-bottom: 15px;
     font-weight: 500;
 }
+.profile-social{
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+.profile-social a{
+    display: flex;
+    width: 35px;
+    height: 35px;
+    
+}
 
 .profile-desc {
     color: #4A6F8A;
@@ -249,7 +268,7 @@ nav a {
 .profile-social img {
     width: 35px;
     margin-right: 15px;
-    filter: grayscale(100%); 
+    filter: grayscale(100%);
 }
 
 .social-proof {
@@ -275,7 +294,7 @@ nav a {
     display: flex;
     align-items: center;
     gap: 20px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
 }
 
 .testi-card img {
@@ -304,7 +323,7 @@ nav a {
     font-size: 28px;
     font-weight: 600;
     margin-bottom: 20px;
-    text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
 }
 
 .download-btn {
@@ -320,7 +339,7 @@ nav a {
     display: flex;
     align-items: center;
     gap: 10px;
-    box-shadow: 0 4px 0 rgba(0,0,0,0.1);
+    box-shadow: 0 4px 0 rgba(0, 0, 0, 0.1);
 }
 
 .cta-image img {
@@ -328,12 +347,12 @@ nav a {
     background: white;
     padding: 15px;
     border-radius: 20px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
 }
 
 footer {
     background-color: var(--footer-bg);
-    height: 140px; 
+    height: 140px;
     padding: 20px 40px;
     display: flex;
     flex-direction: column;
@@ -391,183 +410,27 @@ footer {
 }
 
 /*tablet*/
-@media (max-width: 465px){
+@media (max-width: 465px) {
 
-html{
-    scroll-behavior: smooth;
-}
-
-body {
-    font-family: var(--font-barlow);
-    overflow-x: hidden;
-}
-.hero-content{
-    flex-direction: row;
-    gap: 10px;
-    padding: 10px;
-}
-.steps-box{
-    width: 250px;
-}
-
-header {
-    background-color: var(--blue-header);
-    height: 60px;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-.feature-card p {
-    font-size: 7px;
-    line-height: 1.2;
-    font-weight: 300;
-    text-transform: uppercase;
-}
-nav {
-    display: flex;
-    gap: 10px;
-    height: 13px;
-    
-}
-nav a {
-    color: white;
-    text-decoration: none;
-    font-size: 14px;
-    display: flex;
-    align-items: center;
-    gap: 6px;
-}
-.devTeam, .funcionalTxt {
-    display: flex;
-    flex-direction: row;
-    width: 90px;
-    height: 12px;
-    transition: 100ms;
-}
-.baixar{
-    display: flex;
-    flex-direction: row;
-    width: 80px;
-    height: 12px;
-    transition: 100ms
-}
-.baixar:hover, .devTeam:hover, .funcionalTxt :hover {
-    width: 97px;
-    height: 14px;
-    font-size: 20px;
-    transition: 100ms;
-}
-
-.steps-box {
-    background-color: #3B9DD8;
-    color: white;
-    padding: 16px 40px;
-    border-radius: 8px;
-    text-align: left;
-    box-shadow: -2px 2px 10px rgba(0, 0, 0, 0.2);
-}
-.steps-box p {
-    font-size: 17px;
-    margin: 5px 0;
-}
-.garage-img {
-    width: 201px;
-    border-radius: 10px;
-}
-.features-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 53px;
-    max-width: 509px;
-}
-.feature-card h3{
-    height: 200px;
-    font-size:18px ;
-}
-
-.feature-card img{
-    height: 40px;
-    font-size: 10px;
-}
-.feature-card p{
-    font-size: 8px;
-}
-.profile-card{
-    
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    width: 300px;
-    height: 400px;
-    box-shadow: -2px 3px 7px 6px rgba(0, 0, 0, 0.1);
-    padding: 40px;
-    border-radius: 20px;
-
-}
-.testi-card{
-    flex-direction: column;
-    gap: 10px;  
-    width: 190px;
-    height: 227px;
-}
-p {
-    text-align: center;
-}
-.cta-text h2 {
-    font-size: 20px;
-    font-weight: 600;
-    margin-bottom: 20px;
-    padding: 0 10px;
-}
-.cta-image{
-    padding: 0 10px;
-}
-.download-btn {
-    display: flex;
-    margin-top: 30px;
-    justify-content: center; /* Centraliza horizontalmente */
-    align-items: center; /* Centraliza verticalmente */
-    text-align: center; /* Garante que o texto fique centralizado */
-    padding: 12px 50px;
-    font-size: 30px;
-    width: 400px;
-    height: 50px;
-}
-/*Celular*/
-@media (max-width: 320px){
-
-    html{
+    html {
         scroll-behavior: smooth;
     }
-    header{
-        display: flex;
-        flex-direction: row;
-        padding: 0 10px;
-        gap: 100px;
-        justify-content: start;
-    }
-    .download-header{
-        background-color: var(--green-btn);
-        width: 100px;
-        height: 30px;
-        align-items: center;
-        justify-content: center;
-        border-radius: 10px;
-        box-shadow: -2px 3px 7px 6px rgba(0, 0, 0, 0.1);
-    }    
+
     body {
         font-family: var(--font-barlow);
         overflow-x: hidden;
     }
-    .hero-content{
+
+    .hero-content {
         flex-direction: row;
         gap: 10px;
         padding: 10px;
     }
-    .steps-box{
-        width: 120px;
+
+    .steps-box {
+        width: 250px;
     }
-    
+
     header {
         background-color: var(--blue-header);
         height: 60px;
@@ -575,18 +438,21 @@ p {
         align-items: center;
         gap: 10px;
     }
+
     .feature-card p {
         font-size: 7px;
         line-height: 1.2;
-        font-weight: 200;
+        font-weight: 300;
         text-transform: uppercase;
     }
+
     nav {
         display: flex;
         gap: 10px;
         height: 13px;
-        
+
     }
+
     nav a {
         color: white;
         text-decoration: none;
@@ -595,29 +461,31 @@ p {
         align-items: center;
         gap: 6px;
     }
-    .devTeam, .funcionalTxt {
+
+    .devTeam,
+    .funcionalTxt {
         display: flex;
         flex-direction: row;
         width: 90px;
         height: 12px;
         transition: 100ms;
     }
-    .baixar{
+
+    .baixar {
         display: flex;
         flex-direction: row;
         width: 80px;
         height: 12px;
         transition: 100ms
     }
-    .baixar:hover, .devTeam:hover, .funcionalTxt :hover {
+
+    .baixar:hover,
+    .devTeam:hover,
+    .funcionalTxt :hover {
         width: 97px;
         height: 14px;
         font-size: 20px;
         transition: 100ms;
-       
-    }
-   .mobile-visibility{
-        display: none;
     }
 
     .steps-box {
@@ -628,34 +496,40 @@ p {
         text-align: left;
         box-shadow: -2px 2px 10px rgba(0, 0, 0, 0.2);
     }
+
     .steps-box p {
         font-size: 17px;
         margin: 5px 0;
     }
+
     .garage-img {
         width: 201px;
         border-radius: 10px;
     }
+
     .features-grid {
         display: grid;
         grid-template-columns: 1fr 1fr;
         gap: 53px;
         max-width: 509px;
     }
-    .feature-card h3{
+
+    .feature-card h3 {
         height: 200px;
-        font-size:18px ;
+        font-size: 18px;
     }
-    
-    .feature-card img{
+
+    .feature-card img {
         height: 40px;
         font-size: 10px;
     }
-    .feature-card p{
+
+    .feature-card p {
         font-size: 8px;
     }
-    .profile-card{
-        
+
+    .profile-card {
+
         display: flex;
         flex-direction: column;
         gap: 10px;
@@ -664,36 +538,274 @@ p {
         box-shadow: -2px 3px 7px 6px rgba(0, 0, 0, 0.1);
         padding: 40px;
         border-radius: 20px;
-    
+
     }
-    .testi-card{
+    .profile-social{
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+    }
+    .profile-social a{
+        display: flex;
+        width: 35px;
+        height: 35px;
+        
+    }
+
+    .testi-card {
         flex-direction: column;
-        gap: 10px;  
+        gap: 10px;
         width: 190px;
         height: 227px;
     }
+
     p {
         text-align: center;
     }
+
     .cta-text h2 {
         font-size: 20px;
         font-weight: 600;
         margin-bottom: 20px;
         padding: 0 10px;
     }
-    .cta-image{
+
+    .cta-image {
         padding: 0 10px;
     }
+
     .download-btn {
         display: flex;
         margin-top: 30px;
-        justify-content: center; /* Centraliza horizontalmente */
-        align-items: center; /* Centraliza verticalmente */
-        text-align: center; /* Garante que o texto fique centralizado */
+        justify-content: center;
+        align-items: center;
+        text-align: center;
         padding: 12px 50px;
         font-size: 30px;
         width: 400px;
         height: 50px;
     }
-}
+
+    /*Celular*/
+    @media (max-width: 320px) {
+        .mobile-visibility {
+            display: none;
+            z-index: -1000;
+            position: absolute;
+            display: block;
+            display: none;
+            clear: both;
+        }
+
+        .nav {
+            width: 1px;
+            gap: 1px;
+            font-size: 1px;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        header {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            padding: 0 10px;
+            gap: 100px;
+            justify-content: start;
+            gap: 130px;
+        }
+
+        .download-header {
+            background-color: var(--green-btn);
+            width: 200px;
+            height: 30px;
+            align-items: center;
+            justify-content: center;
+            border-radius: 10px;
+            box-shadow: -2px 4px 3px 2px rgba(0, 0, 0, 0.1);
+            margin-top: -8px;
+        }
+
+        body {
+            font-family: var(--font-barlow);
+            overflow-x: hidden;
+        }
+
+        .hero-content {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            padding: 10px;
+        }
+
+        .garage-img {
+            width: 140px
+        }
+
+        .features-grid {
+            flex-direction: column;
+            grid-template-columns: 1fr;
+            gap: 20px;
+            max-width: 250px;
+        }
+
+        .feature-card p {
+            font-size: 7px;
+            line-height: 1.2;
+            font-weight: 200;
+            text-transform: uppercase;
+        }
+
+        .img {
+            width: 20px;
+        }
+        
+        nav {
+            display: flex;
+            gap: 10px;
+            height: 13px;
+            transform: translate(-50%,-50%);
+        }
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .devTeam,
+        .funcionalTxt {
+            display: flex;
+            flex-direction: row;
+            width: 90px;
+            height: 12px;
+            transition: 100ms;
+        }
+
+        .baixar {
+            display: flex;
+            flex-direction: row;
+            width: 80px;
+            height: 12px;
+            transition: 100ms
+        }
+
+        .baixar:hover,
+        .devTeam:hover,
+        .funcionalTxt :hover {
+            width: 97px;
+            height: 14px;
+            font-size: 20px;
+            transition: 100ms;
+
+        }
+        .profile-social{
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+        }
+        .profile-social a{
+            display: flex;
+            width: 35px;
+            height: 35px;
+            
+        }
+
+        .steps-box p {
+            font-size: 20px;
+            margin: 5px 0;
+        }
+
+        .feature-card p {
+            font-size: 12px;
+        }
+
+        .feature-card {
+            height: 230px;
+        }
+
+        .feature-card h3 {
+            font-size: 18px;
+        }
+
+        .feature-card img {
+            height: 40px;
+            font-size: 25px;
+        }
+
+        #app-function {
+            font-size: 10px;
+        }
+
+        .testimonials {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+            max-width: 1000px;
+            margin-bottom: 60px;
+        }
+
+        .testi-card {
+            width: 250px;
+            height: 200px;
+            background: white;
+            border-radius: 15px;
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        .testi-card img {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .testi-card p {
+            font-size: 14px;
+            color: #06477A;
+            line-height: 1.2;
+        }
+
+        .cta-text{
+            width: 100px;
+        }
+        .cta-text h2 {
+            font-size: 20px;
+            font-weight: 600;
+            height: 100px;
+            width: 200px;
+            text-align: center;
+            margin-left: -55px;
+        }
+        .cta-area{
+            width: 320px;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .cta-image {
+            width: 60px;
+            margin-right: 210px;
+        }
+
+        .download-btn {
+            display: flex;
+            margin-top: 30px;
+            justify-content: center;            
+            align-items: center;        
+            text-align: center;     
+            padding: 12px 50px;
+            font-size: 30px;
+            width: 300px;
+            height: 50px;
+        }
+    }
 }
